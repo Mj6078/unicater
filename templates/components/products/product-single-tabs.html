@@ -1,0 +1,152 @@
+<section style="margin-top: -200px;" class="product-tabs section" data-product-container>
+  <ul class="tabs" data-tabs role="tablist">
+    {{#if theme_settings.product-additional-info}}
+      <li class="tab-title">
+        <a href="#product-additional-info" class="tab-title" role="tab" data-tab-link>
+          {{lang 'product.additional_info'}}
+        </a>
+      </li>
+    {{/if}}
+
+    <li class="tab-title">
+      <a href="#product-description" class="tab-title" role="tab" data-tab-link>
+          {{lang 'product.description'}}
+      </a>
+  </li>
+
+    {{#if product.videos.list.length}}
+      <li class="tab-title">
+        <a href="#product-videos" class="tab-title" role="tab" data-tab-link>
+          {{lang 'product.videos'}}
+        </a>
+      </li>
+    {{/if}}
+    <!-- {{#if settings.show_product_reviews}}
+      <li class="tab-title">
+        <a href="#product-reviews" class="tab-title" role="tab" data-tab-link>
+          {{lang 'product.reviews_tab_title'}}
+          <span
+            class="num-reviews"
+            data-num-reviews="({{product.reviews.total}})"
+          ></span>
+        </a>
+      </li>
+    {{/if}} -->
+  </ul>
+  <div class="container container-small">
+
+    <div class="tabs-content">
+
+    {{#if theme_settings.product-additional-info}}
+      <div class="accordion-title">
+        <a
+          href="#product-additional-info"
+          data-scroll="#product-additional-info"
+        >
+          {{lang 'product.additional_info'}}
+          <svg class="icon icon-plus">
+            <use xlink:href="#icon-plus" />
+          </svg>
+          <svg class="icon icon-minus">
+            <use xlink:href="#icon-minus" />
+          </svg>
+        </a>
+      </div>
+      <div
+        class="tab-content-panel product-additional-info"
+        id="product-additional-info"
+        data-additional-info
+        data-tab-content
+      >
+        {{> components/products/additional-info}}
+      </div>
+    {{/if}}
+    
+    <div class="accordion-title">
+      <a href="#product-description" data-scroll="#product-description">
+          {{lang 'product.description'}}
+          <svg class="icon icon-plus">
+              <use xlink:href="#icon-plus" />
+          </svg>
+          <svg class="icon icon-minus">
+              <use xlink:href="#icon-minus" />
+          </svg>
+      </a>
+  </div>
+  <div class="tab-content-panel product-description" id="product-description" data-tab-content>
+      {{> components/products/product-description}}
+  </div>
+
+
+      {{#if product.videos.list.length}}
+        <div class="accordion-title">
+          <a href="#product-videos" data-scroll="#product-videos">
+            {{lang 'product.videos'}}
+            <svg class="icon icon-plus">
+              <use xlink:href="#icon-plus" />
+            </svg>
+            <svg class="icon icon-minus">
+              <use xlink:href="#icon-minus" />
+            </svg>
+          </a>
+        </div>
+        <div class="tab-content-panel" id="product-videos" data-tab-content>
+          <div class="product-videos-list">
+            {{#each product.videos.list}}
+              {{> components/products/video-block video=this}}
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
+      {{#if settings.show_product_reviews}}
+        <div class="accordion-title">
+          <a href="#product-reviews" data-scroll="#product-reviews">
+            {{lang 'product.reviews_tab_title'}}
+            {{#any
+              product.videos.list.length
+              theme_settings.product-additional-info
+            }}
+              <svg class="icon icon-plus">
+                <use xlink:href="#icon-plus" />
+              </svg>
+              <svg class="icon icon-minus">
+                <use xlink:href="#icon-minus" />
+              </svg>
+            {{/any}}
+          </a>
+        </div>
+        <div class="tab-content-panel" id="product-reviews" data-tab-content>
+
+          {{{snippet 'reviews'}}}
+
+          <h3 class="product-reviews-title">
+            {{lang 'product.reviews.title' numReviews=product.num_reviews}}
+          </h3>
+          {{#if product.reviews.list.length}}
+            <div class="review-items">
+              {{#each product.reviews.list}}
+                {{> components/products/review-item index=@index}}
+              {{/each}}
+            </div>
+
+            {{#if product.reviews.list.length '>' 2}}
+              <div class="reviews-more-wrap">
+                <a class="reviews-show-more-link" href="#">
+                  {{lang 'product.reviews.show_more'}}
+                  {{> svg/arrow-down}}
+                </a>
+              </div>
+            {{/if}}
+          {{else}}
+            <h5>{{lang 'product.reviews.no_reviews'}}</h5>
+          {{/if}}
+
+          {{> components/products/review-form}}
+        </div>
+        <svg class="icon icon-spinner">
+          <use xlink:href="#icon-spinner" />
+        </svg>
+      </div>
+    {{/if}}
+  </div><!-- /.container-small -->
+</section>

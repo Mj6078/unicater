@@ -1,0 +1,70 @@
+.modal-overlay {
+  background-color: rgba($color-modal-background, 0.95);
+}
+
+.modal {
+  margin-bottom: 5vw;
+  width: 90%;
+  max-width: $max-width;
+  padding: $gutter;
+
+  .loaded & {
+    background-color: #fff;
+  }
+
+   &.modal-quick-shop {
+    top: 5vw;
+  }
+
+  .icon-spinner {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+  }
+}
+
+.button-modal-close {
+  position: absolute;
+  top: 19px;
+  right: 20px;
+  color: contrast($color-modal-background, 100%);
+  background: none;
+
+  .visible & {
+    position: fixed;
+  }
+
+  &:hover {
+    color: $color-accent;
+  }
+
+  .icon-close {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  display: block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 36px;
+  background-color: $color-body;
+  color: contrast($color-body, 100%, 70);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $color-accent;
+    color: contrast($color-body, 100%, 70);
+  }
+
+  .icon-close {
+    @include centerer;
+  }
+}

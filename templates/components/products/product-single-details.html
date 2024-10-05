@@ -1,0 +1,507 @@
+<section
+  class="
+    product-details
+    product-block
+    section
+    {{#unless quick_view}}
+      product-single
+    {{/unless}} 
+    {{cart_icon}}-icon
+    {{theme_settings.product-single-display-order}}
+  "
+  {{#if quick_view}}
+    data-product-quickshop-container
+  {{else}}
+    data-product-container
+  {{/if}}
+  data-product-title="{{product.title}}"
+  data-product-id="{{product.id}}"
+  data-event-type="product"
+  data-entity-id="{{product.id}}"
+  data-name="{{product.title}}"
+  data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+  data-product-brand="{{product.brand.name}}"
+  data-product-price="{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}"
+  data-product-variant="single-product-option"
+>
+
+  <div class="container">
+      {{#unless quick_view}}
+        {{> components/common/breadcrumbs breadcrumbs}}
+      {{/unless}}
+  
+      <div style="margin-top: -50px;" class="product-details-column">
+        {{> components/products/product-single-images1 images=product.images default_image=theme_settings.default_image }}
+      </div>
+  
+      <div style="margin-top: -50px;" class="product-details-column">
+        <!-- {{#if product.brand}}
+          <h2 class="product-brand">{{product.brand.name}}</h2>
+        {{/if}} -->
+        
+        <h1 style="font-weight: 700;" class="product-title">{{this.product.title}}</h1>
+        
+        {{#if product.release_date }}
+          <p class="message neutral">{{product.release_date}}</p>
+        {{/if}}
+        <div class="product-price">
+          {{#if product.price}}
+            {{> core/products/price1 price=product.price show_savings=true save_block=true show_tax_labels=true show_sale_badges=false price_range_display=theme_settings.price_range_display retail_price_label=theme_settings.retail-price-label non_sale_price_label=theme_settings.non-sale-price-label sale_price_label=theme_settings.sale-price-label price_label=theme_settings.price-label }}
+          {{/if}}
+          
+          {{#if product.call_for_price}}
+            <p>{{product.call_for_price}}</p>
+          {{/if}}
+        </div>
+        
+        {{{region name="product_below_price"}}}
+        
+        <div class="product-rating-block">
+          {{#if settings.show_product_rating}}
+            <div class="product-item-rating">
+              {{> components/products/ratings rating=this.product.rating}}
+              <span class="reviews-jumplink total-reviews" data-scroll="#product-reviews">( <a class="product-reviews-link link" href="{{#if quick_view}}{{product.url}}#product-reviews{{else}}#product-reviews{{/if}}">{{lang 'product.reviews.title' numReviews=product.num_reviews}}</a> )</span>
+            </div>
+            {{{snippet 'product_rating'}}}
+          {{/if}}
+        </div>
+  
+        {{#each product.custom_fields}}
+          {{#if name '===' 'per unit price'}}
+            <div style=" margin-top: -30px; margin-bottom: 10px;" class="product-details-price-unit">
+              <span class="product-details-value">£{{value}}</span>
+              <span> per unit</span>
+            </div>
+          {{/if}}
+          {{#if name '===' 'quantity'}}
+            <div class="product-details-quantity">
+              <div style="padding-right: 5px; padding-left: 5px;">
+              <span class="product-details-value">{{value}}</span>
+              <span>Unit Per Case</span>
+            </div>
+            </div>
+          {{/if}}
+        {{/each}}
+        <div class="icon-container1">
+          {{#each product.custom_fields}}
+            {{#if name '===' 'biodegradable'}}
+              <div class="icon-wrapper">
+                <img class="icon1" src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/biodegradable.png?t=1719063290" alt="Biodegradable">
+                <span class="icon-text">Biodegradable</span>
+              </div>
+            {{/if}}
+            {{#if name '===' 'greaseproof'}}
+            <div class="icon-wrapper">
+              <img class="icon1" src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/biodegradable.png?t=1719063290" alt="Biodegradable">
+              <span class="icon-text">Greaseproof</span>
+            </div>
+          {{/if}}
+            {{#if name '===' 'reusable'}}
+            <div class="icon-wrapper">
+              <img class="icon1" src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/biodegradable.png?t=1719063290" alt="Biodegradable">
+              <span class="icon-text">Biodegradable</span>
+            </div>
+          {{/if}}
+            {{#if name '===' 'compostable'}}
+              <div class="icon-wrapper">
+                <img class="icon1" src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/compostable.png?t=1719063291" alt="Compostable">
+                <span class="icon-text">Compostable</span>
+              </div>
+            {{/if}}
+            {{#if name '===' 'recycle'}}
+              <div class="icon-wrapper">
+                <img class="icon1" src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/recyclable.png?t=1719063297" alt="Recyclable">
+                <span class="icon-text">Recyclable</span>
+              </div>
+            {{/if}}
+            {{#if name '===' 'microwave safe'}}
+              <div class="icon-wrapper">
+                <img class="icon1" src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/microwavable.png?t=1719063293" alt="Microwave Safe">
+                <span class="icon-text">Microwave Safe</span>
+              </div>
+            {{/if}}
+            {{#if name '===' 'plastic free'}}
+              <div class="icon-wrapper">
+                <img class="icon1" src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/plastic-free.png?t=1719063296" alt="Plastic Free">
+                <span class="icon-text">Plastic Free</span>
+              </div>
+            {{/if}}
+            {{#if name '===' 'ovensafe'}}
+              <div class="icon-wrapper">
+                <img class="icon1" src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/oven-safe.png?t=1719063294" alt="Oven Safe">
+                <span class="icon-text">Oven Safe</span>
+              </div>
+            {{/if}}
+            {{#if name '===' 'plant based'}}
+              <div class="icon-wrapper">
+                <img class="icon1" src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/plant-based.png?t=1719063295" alt="Plante Based">
+                <span class="icon-text">Plant Based</span>
+              </div>
+            {{/if}}
+            {{#if name '===' 'freezer free'}}
+              <div class="icon-wrapper">
+                <img class="icon1" src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/freezer-safe.png?t=1719063292" alt="Frezzer Free">
+                <span class="icon-text">Freezer Safe</span>
+              </div>
+            {{/if}}
+          {{/each}}
+        </div>  
+       
+          <h2 style="margin-top: 10px;" class="countdown-title">Order before 2 PM Monday to Friday for next day delivery</h2>
+
+       
+      
+        
+        {{#if theme_settings.product-single-display-order '===' 'product-description-first'}}
+          <hr>
+          {{> components/products/add-to-cart-form cart_icon=cart_icon }}
+        {{else}}
+          {{> components/products/add-to-cart-form cart_icon=cart_icon }}
+          <hr>
+        {{/if}}
+
+      
+      
+        <div class="product-message-area" data-product-alerts></div>
+        
+        {{#if quick_view}}
+          <a class="quick-shop-details-lower link" href="{{this.product.url}}">
+            {{lang 'product.view_full_details'}}
+          </a>
+        {{/if}}
+  
+        {{{snippet 'product_details'}}}
+     
+    </div>
+  <!-- Related products on the right -->
+  <div style="margin-top: -100px;" class="related-products-wrapper">
+    <div class="related-product">
+      {{#if product.related_products.length}}
+        <section class="custome-products-related section">
+          <div class="custom-container">
+            <h3 class="section-title">Compatable Product</h3>
+            <div class="swiper-container product-carousel1">
+              <div class="swiper-wrapper">
+                {{#each product.related_products}}
+                  <div class="swiper-slide">
+                    <article class="custom-product-item" data-product-title="{{name}}" data-product-id="{{id}}"
+  data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}"
+  data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+  data-product-brand="{{brand.name}}"
+  data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"
+  data-product-variant="single-product-option">
+
+  <div class="product-item-container1">
+    <figure class="product-item-thumbnail1">
+      <a href="{{url}}" class="image-ratio">
+        {{> components/common/responsive-image
+        image=image
+        class="custom-product-item-image"
+        fit=fit
+        fallback_size=fallback_size
+        lazyload=lazyload
+        default_image=default_image
+        }}
+      </a>
+    </figure>
+    <div class="custom-product-item-details">
+      <h5 style="font-family: inter;" class="custom-product-item-title">
+        <a href="{{url}}" alt="{{name}}">{{name}}</a>
+      </h5>
+      <div class="custom-product-item-price">
+        {{#if price.with_tax}}
+          {{price.with_tax.formatted}}
+        {{else}}
+          {{price.without_tax.formatted}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</article>
+
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+        </section>
+      {{/if}}
+    </div>
+  </div>
+
+    
+  </section>
+  
+  <script>
+    function updateCountdown() {
+      const now = new Date();
+      const targetHour = 14; // 2 PM
+      let targetTime = new Date(now);
+      targetTime.setHours(targetHour, 0, 0, 0);
+      if (now > targetTime) {
+        targetTime.setDate(now.getDate() + 1);
+      }
+      const timeDifference = targetTime - now;
+      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  var swiper = new Swiper('.product-carousel1', {
+    slidesPerView: 2, // Show 2 slides per view
+    spaceBetween: 20, // Space between slides
+    loop: true, // Set to true if you want the carousel to loop
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      1200: {
+        slidesPerView: 2, // Show 2 slides per view on larger screens
+      },
+      768: {
+        slidesPerView: 1, // Show 1 slide per view on smaller screens
+      }
+    }
+  });
+});
+
+
+
+  </script>
+<style>
+/* Ensure your main content and related products are properly positioned */
+.product-page-content {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px; /* Adjust as needed */
+  padding: 20px;
+}
+
+.main-content {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.related-products-wrapper {
+  flex: 0 0 300px; /* Adjust width as needed */
+  max-width: 500px; /* Ensure it doesn't stretch too wide */
+  box-sizing: border-box;
+}
+
+/* Main Container */
+.custom-container {
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/* Swiper Container */
+.swiper-container {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.swiper-wrapper {
+  display: flex;
+}
+
+.swiper-slide {
+  flex: 0 0 auto;
+  width: calc(50% - 10px); /* Adjust width for 2 slides per view with space */
+  margin-right: 20px; /* Space between slides */
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.swiper-slide:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Image */
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s;
+}
+
+.swiper-slide:hover img {
+  transform: scale(1.05);
+}
+
+/* Product Details */
+.product-details {
+  padding: 15px;
+  text-align: left;
+}
+
+.product-details h4 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.product-details p {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+/* Product Price */
+.product-price {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e74c3c;
+  margin-bottom: 10px;
+}
+
+.product-price del {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #999;
+  margin-left: 5px;
+}
+
+/* Sale Badge */
+.sale-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 50px;
+}
+
+/* Quick Shop Button */
+.quick-shop {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 50px;
+  transition: background-color 0.3s;
+}
+
+.quick-shop:hover {
+  background-color: #555;
+}
+
+/* Pagination and Navigation */
+.swiper-pagination {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #333;
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .product-page-content {
+    flex-direction: column;
+  }
+
+  .related-products-wrapper {
+    max-width: 100%;
+    margin-top: 20px;
+  }
+}
+.icon-container1 {
+    display: flex;
+    gap: 10px; /* Adjust the gap between the icons as needed */
+    align-items: center; /* Align icons vertically centered */
+    flex-wrap: wrap; /* Wrap icons to next line if there's not enough space */
+}
+
+.icon-wrapper {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.icon1 {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.icon-wrapper:hover .icon1 {
+    transform: scale(1.1);
+}
+
+.icon-text {
+    position: absolute;
+    bottom: -25px; /* Adjust this to position the text outside the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #333; /* Text color */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for better visibility */
+    opacity: 0;
+    transition: opacity 0.3s ease, bottom 0.3s ease;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.icon-wrapper:hover .icon-text {
+    opacity: 1;
+    bottom: -35px; /* Slightly move up when hovering */
+}
+@media (max-width: 1000px) {
+  .countdown-title{
+    font-size: 12px;
+  }
+  .product-title{
+    font-size: 20px;
+  }
+}
+
+</style>
+  

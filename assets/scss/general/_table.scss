@@ -1,0 +1,22 @@
+/* Tables */
+
+table {
+  color: $color-body;
+  border-color: $color-border;
+}
+
+th {
+  @extend %heading-text-treatment;
+  color: $color-input;
+}
+
+table.geotrust-ssl-seal-table {
+  margin-top: 30px;
+  margin-bottom: 0;
+  border: 0;
+
+  td {
+    padding: 0;
+    border: 0;
+  }
+}

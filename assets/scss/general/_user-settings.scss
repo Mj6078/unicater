@@ -1,0 +1,72 @@
+// Theme Variables
+// scss-lint:disable NameFormat
+$font-primary: 'Metropolis', sans-serif;
+$font-secondary: 'Metropolis', sans-serif;
+
+
+// Convert to bool by comparing strings
+$header-use-primary-font: (stencilString("header-use-primary-font") == "true");
+
+$header-logo-alignment: stencilString('global-header-logo-alignment');
+
+$color-body: stencilColor('color-body');
+$color-background: stencilColor('color-background');
+$color-background-secondary: stencilColor('color-background-secondary');
+$color-nav: stencilColor('color-nav');
+$color-nav-active: stencilColor('color-nav-active');
+$color-nav-background: stencilColor('color-nav-background');
+$font-body: $font-primary;
+
+$color-accent: stencilColor('color-accent');
+$color-border: stencilColor('color-border');
+$color-link: stencilColor('color-link');
+$color-link-hover: stencilColor('color-link-hover');
+
+$color-input: stencilColor('color-input');
+
+$heading-font: 'Metropolis', sans-serif;
+$heading-weight: 700;
+$heading-color: #333;
+
+$section-title-color: stencilColor('color-section-title');
+
+$meta-font: 'Metropolis', sans-serif;
+$meta-weight: 400;
+$color-meta: stencilColor('color-meta');
+$color-bold: stencilColor('color-bold');
+
+$button-font: 'Metropolis', sans-serif;
+$button-weight: 400;
+
+$border-size: stencilNumber("border-size", "px");
+$main-nav-spacing: stencilNumber("global-main-nav-spacing", "px");
+
+$color-button: stencilColor('color-button');
+$color-button-background: stencilColor('color-button-background');
+$color-button-background-hover: stencilColor('color-button-background-hover');
+
+$color-button-secondary: stencilColor('color-button-secondary');
+$color-button-secondary-background: stencilColor('color-button-secondary-background');
+
+$color-button-tertiary: stencilColor('color-button-tertiary');
+$color-button-tertiary-background: stencilColor('color-button-tertiary-background');
+
+$color-topbar-background: stencilColor('color-topbar-background');
+$color-topbar-text: stencilColor('color-topbar-text');
+
+$mobile-topbar-background-color: rgb(142, 38, 38);
+$mobile-topbar-text-color: rgb(174, 55, 55);
+
+$color-mini-cart-background: stencilColor('color-mini-cart-background');
+
+$color-carousel-background: stencilColor('color-carousel-background');
+$color-carousel-navigation: stencilColor('color-carousel-navigation');
+$color-carousel-title: stencilColor('color-carousel-title');
+$color-carousel-text: stencilColor('color-carousel-text');
+
+$color-modal-background: stencilColor('color-modal-background');
+
+$color-footer-background: stencilColor('color-footer-background');
+$color-footer-text: stencilColor('color-footer-text');
+
+$color-collection-item-overlay: stencilColor('color-collection-item-overlay');

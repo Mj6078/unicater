@@ -1,0 +1,131 @@
+.giftcertificates {
+  .main-content {
+    .container {
+      display: grid;
+
+      @include media($min: $breakpoint-s) {
+        grid-template-columns: 1fr 3fr;
+        column-gap: 2%;
+        align-items: start;
+      }
+    }
+  }
+}
+
+.giftcard-sidebar {
+  @include media($min: $breakpoint-s) {
+    padding-right: $double-gutter;
+  }
+}
+
+.giftcard-content {
+  padding-bottom: $section-padding;
+
+  .giftcard-subheading {
+    margin: 1.5em 0;
+  }
+}
+
+.giftcard-nav {
+  margin-bottom: 3rem;
+  text-align: left;
+}
+
+.giftcard-header {
+  @extend h2;
+  padding-bottom: rem-calc(10);
+  border-bottom: 1px solid $color-border;
+}
+
+.giftcard-nav-item {
+  @extend %link-text-treatment;
+  margin: 0 rem-calc(8) rem-calc(10);
+  text-decoration: none;
+  color: $color-meta;
+
+  &.is-active {
+    color: $color-accent;
+  }
+}
+
+.giftcard-body {
+  .giftcertificates & {
+    padding: rem-calc(50 72);
+    background-color: $color-background-secondary;
+
+    @include media($max: $breakpoint-xs) {
+      padding: 24px;
+    }
+  }
+
+  .form-input:not(.form-radio) {
+    width: 100%;
+  }
+
+  .giftcard-heading,
+  .giftcard-subheading {
+    display: none;
+  }
+}
+
+.giftcard-form-preview {
+  iframe {
+    width: 100%;
+  }
+}
+
+.form-giftcard-balance {
+  @include layout-group;
+
+  .form-field,
+  .form-actions {
+    @include layout-group-item;
+    vertical-align: bottom;
+  }
+
+  .form-field {
+    width: 90%;
+    padding-right: rem-calc(30);
+  }
+}
+
+.giftcard-balance-container {
+  margin: 0;
+}
+
+.giftcard-form-theme {
+  .form-field-control {
+    display: grid;
+    overflow: hidden;
+
+    @media screen and (min-width: $account-breakpoint-small) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 2%;
+      align-items: start;
+    }
+  }
+}
+
+.giftcard-form-actions {
+  text-align: center;
+}
+
+
+#giftcard-amount {
+  @include media($min: $breakpoint-s) {
+    width: calc(50% - 8px);
+  }
+}
+
+.giftcard-form-help-message {
+  @include media($min: $breakpoint-s) {
+    float: left;
+    position: relative;
+    top: -55px;
+    margin-left: calc(50% + 10px);
+  }
+}
+
+.giftcard-redeem-steps {
+  margin-left: 1em;
+}

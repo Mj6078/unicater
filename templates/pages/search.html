@@ -1,0 +1,145 @@
+---
+product_results:
+    limit: {{theme_settings.product-count}}
+blog: true
+---
+
+{{#partial "page"}}
+
+<header class="search-header page-header">
+  {{> components/common/breadcrumbs breadcrumbs}}
+  <h1 class="search-title page-title">
+      {{lang 'search.title'}}
+      <span class="search-query">'{{{sanitize forms.search.query}}}'</span>
+  </h1>
+  {{> components/common/search-form}}
+</header>
+
+  <section class="product-listing section">
+    <div class="container">
+      {{{snippet 'search'}}}
+      {{#if forms.search.has_suggestions}}
+      <div class="panel panel--large">
+          <div class="panel-body panel-body--searchSuggestions">
+              {{#if forms.search.suggested_query}}
+                  <div class="search-suggestion search-suggestion--query">
+                    Did you mean <strong>{{forms.search.suggested_query.query}}</strong>
+                      <a href="{{forms.search.suggested_query.url}}" class="search-refine">Refine Search</a>
+                  </div>
+                  {{#if result_count '===' 0}}
+                      <div class="search-suggestion search-suggestion--query">
+                          <p>Your search for "<strong>{{{sanitize forms.search.query}}}</strong>" did not match any products or information.</p>
+                      </div>
+                  {{/if}}
+              {{/if}}
+              {{#if brand_results.length}}
+                  <div class="search-suggestion search-suggestion--brands">
+                      <h5 class="suggestion-title">Brands</h5>
+                      {{#each brand_results}}
+                          <a href="{{url}}">{{name}}</a>
+                          {{#unless @last}}, {{/unless}}
+                      {{/each}}
+                  </div>
+              {{/if}}
+              {{#if result_count '===' 0}}
+                  <div class="search-suggestion search-suggestion--tips">
+                      <h5 class="suggestion-title">Suggestions:</h5>
+                      <ul>
+                          <li>Make sure all words are spelled correctly.</li>
+                          <li>Try different keywords.</li>
+                          <li>Try more general keywords.</li>
+                      </ul>
+                  </div>
+              {{/if}}
+          </div>
+      </div>
+  {{/if}}
+      <ul data-tabs class="tabs" role="tablist">
+        <li data-tab-link class="tab-title" role="tab">
+          <a href="#product-results">
+            {{lang 'search.products' num=product_results.products.length}}
+          </a>
+        </li>
+        <li data-tab-link class="tab-title" role="tab">
+          <a href="#content-results">
+            {{lang 'search.content' num=content_results.length}}
+          </a>
+        </li>
+      </ul>
+      <div class="tabs-content">
+        <div data-tab-content id="product-results" class="tab-content-panel {{#unless theme_settings.collections-sidebar-hidden}}with-sidebar{{/unless}}" role="tabpanel">
+          {{#if product_results.products}}
+            <header class="listing-header">
+              {{> components/products/listing-utils
+                sort=pagination.product_results.sort
+              }}
+            </header>
+
+          {{#unless theme_settings.collections-sidebar-hidden}}
+            <aside class="listing-sidebar" data-search-sidebar>
+              {{> components/search/sidebar}}
+              {{> components/products/listing-utils
+                  sort=pagination.product_results.sort
+              }}
+            </aside>
+          {{/unless}}
+
+            <div
+              class="product-listing-grid"
+              data-search
+              {{#if product_results.show_compare}}
+                data-product-compare
+              {{/if}}
+              data-list-name="Search Results"
+            >
+              {{#if theme_settings.collections-view-mode '===' 'grid'}}
+                {{> components/search/product-listing}}
+              {{else}}
+                {{> components/search/product-listing-list}}
+              {{/if}}
+            </div>
+          {{else}}
+            <h4 class="text-center">{{lang 'search.no_results'}}</h4>
+          {{/if}}
+        </div>
+        <div data-tab-content id="content-results" class="tab-content-panel" role="tabpanel">
+          {{#if content_results}}
+            <div class="content-results container container-small">
+              {{#any content_results type='Page'}}
+                <h3 class="section-title">{{lang 'search.pages'}}</h3>
+              {{/any}}
+              {{#each content_results}}
+                {{#if type '===' 'Page'}}
+                  {{> components/search/content-result}}
+                {{/if}}
+              {{/each}}
+            </div>
+
+            <div class="content-results container container-small">
+              {{#any content_results type='Post'}}
+                <h3 class="section-title">{{blog.name}}</h3>
+              {{/any}}
+              {{#each content_results}}
+                {{#if type '===' 'Post'}}
+                  {{> components/search/content-result}}
+                {{/if}}
+              {{/each}}
+            </div>
+
+            <div class="content-results-pagination">
+              {{> components/common/pagination pagination.content_results}}
+            </div>
+          {{else}}
+            <h4 class="text-center">{{lang 'search.no_results'}}</h4>
+          {{/if}}
+        </div>
+        <svg class="icon icon-spinner"><use xlink:href="#icon-spinner" /></svg>
+      </div>
+    </div>
+
+    {{{region name="search_below_content"}}}
+  </section>
+
+{{/partial}}
+
+{{> layout/base}}

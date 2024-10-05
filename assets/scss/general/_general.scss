@@ -1,0 +1,134 @@
+/* General */
+
+body {
+  @extend %body-text-treatment;
+  background-color: $color-background;
+
+  &.scroll-locked { overflow: hidden; }
+}
+
+/* Links */
+
+a {
+  color: $color-link;
+  transition: color 0.2s $ease-out-quad;
+
+  &:hover {
+    color: $color-link-hover;
+  }
+}
+
+.link {
+  @extend %link-text-treatment;
+}
+
+/* Headers */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.25;
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+h1,
+h3,
+h5 {
+  font-weight: 400;
+}
+
+h1,
+h3,
+h5 {
+  @if ($font-secondary == "Roboto Condensed") {
+    text-transform: uppercase;
+  }
+
+  font-family: $font-secondary, 'Metropolis', sans-serif;;
+  color: $color-bold;
+}
+
+h2,
+h4 {
+  font-family: $font-primary;
+  font-weight: 300;
+  text-transform: none;
+}
+
+h1 { font-size: rem-calc(36); }
+h2 { font-size: rem-calc(28); }
+h3 { font-size: rem-calc(24); }
+h4 { font-size: rem-calc(20); }
+h5 {
+  @if ($font-secondary == "Roboto Condensed") {
+    font-weight: 700;
+  }
+
+  font-size: rem-calc(17);
+}
+
+h6 {
+  @if ($font-secondary == "Roboto Condensed") {
+    font-family: $font-secondary;
+  }
+
+  text-transform: uppercase;
+  font-size: rem-calc(13);
+  font-weight: 700;
+  letter-spacing: 0.0625em;
+  color: $color-bold;
+}
+
+/* Utility classes */
+
+.text-center {
+  text-align: center;
+}
+
+.sr-only {
+  @extend .show-for-sr;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Basic elements */
+
+hr {
+  background: $color-border;
+  height: 1px;
+}
+
+cite {
+  color: $color-meta;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+
+  // Hide lazy-loading images while they are loading
+  &:not([src]) {
+    visibility: hidden;
+  }
+}
+
+svg {
+  fill: currentColor;
+}
+
+.list-bulleted {
+  margin: 1em 0 1em 1.5em;
+  list-style: disc;
+}

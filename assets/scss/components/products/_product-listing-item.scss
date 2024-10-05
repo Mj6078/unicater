@@ -1,0 +1,374 @@
+
+
+$card-margin: 10px;
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center; // Center the grid items
+}
+
+.product-grid-item {
+  text-align: center;
+  margin-bottom: 10px;
+  flex: 1 1 calc(50% - #{10px * 2});
+
+  @media (min-width: 1000px) {
+    flex: 1 1 calc(33.333% - #{10px * 2});
+  }
+
+  @media (min-width: 1200px) {
+    flex: 1 1 calc(25% - #{10px * 2});
+  }
+
+ .product-item-container {
+    padding: 15px;
+    margin-left: 10px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    max-width: 300px; // Restrict max width for better appearance on large screens
+    position: relative; // Add relative positioning to the container
+
+    &:hover {
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      background-color: #c3e7d5;
+    }
+
+    .product-item-thumbnail,
+    .product-item-details,
+    .button {
+      margin-bottom: 15px;
+    }
+
+    .product-item-thumbnail {
+      margin-bottom: rem-calc(10); // Reduce bottom margin
+      overflow: hidden;
+      height: auto;
+      position: relative; // Ensure the thumbnail is relative for absolute positioning of icons
+
+      @media (max-width: $breakpoint-m) {
+        height: 150px; // Ad just height for smaller screens
+      }
+
+      @media (max-width: $breakpoint-s) {
+        height: 120px; // Adjust height for the smallest screens
+      }
+
+      a {
+        display: block;
+        height: 100%;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover; // Changed to cover for better image fitting
+        border-radius: 5px; // Rounded corners for a more polished look
+      }
+    }
+
+    .quick-view-icon1,
+    .recycle-icon {
+      position: absolute;
+      top: 2px; // Adjust top position
+      padding: 2px; // Adjust padding to balance icon size
+      background-color: transparent; // Slightly transparent background
+      border-radius: 50%; // Circular icon background
+    }
+
+    .quick-view-icon1 {
+      left: 2px; // Adjust left position
+
+      svg {
+        width: 18px; // Smaller icon for mobile
+        height: 18px; // Smaller icon for mobile
+        stroke: #333333;
+        fill: none;
+        transition: stroke 0.2s ease-in-out;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+
+        svg {
+          stroke: #ff6600;
+        }
+      }
+    }
+
+    .recycle-icon {
+      right: 2px; // Adjust right position
+
+      img {
+        width: 18px; // Smaller icon for mobile
+        height: 18px; // Smaller icon for mobile
+      }
+    }
+
+    .product-item-details {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+      padding: 0 15px;
+      width: 100%;
+
+      @media (max-width: $breakpoint-s) {
+        padding: 0 15px; // Reduce padding for small screens
+      }
+
+      .product-item-brand1,
+      .product-item-brand2,
+      .product-item-brand3 {
+        font-size: 10px; // Smaller font size for mobile
+        margin: 2px 0; // Reduce margin
+      }
+
+      .product-item-title {
+        margin: rem-calc(5) 0; // Reduce top and bottom margin
+        font-family: 'Metropolis', sans-serif;
+        font-weight: 500;
+        color: #000000;
+        text-transform: none;
+        line-height: 1.2;
+        text-align: left;
+
+        a {
+          color: inherit;
+          text-decoration: none;
+          display: block;
+          word-wrap: break-word;
+        }
+
+        @media (max-width: $breakpoint-m) {
+          font-size: 15px; // Smaller font size for mobile
+        }
+
+        @media (max-width: $breakpoint-s) {
+          font-size: 12px;
+          font-weight: 300; // Further adjust font size for small screens
+        }
+      }
+
+      .custom-fields {
+        display: flex;
+        flex-direction: column; // Changed to column for better layout on small screens
+        font-size: 12px;
+        color: #666666;
+
+        .field {
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px; // Added margin for spacing between fields
+          
+          .value {
+            font-weight: bold;
+            color: #000000;
+            margin-left: 0; // Ensure no extra margin
+            padding-left: 0; // Ensure no extra padding
+          }
+        }
+      }
+    }
+
+    .product-item-price {
+      font-size: 16px; // Reduce font size
+      color: #000000;
+      text-align: left; // Align text to the left
+      display: flex; // Align price elements correctly
+      flex-direction: column; // Stack price elements vertically
+
+      @media (max-width: $breakpoint-m) {
+        font-size: 14px; // Smaller font size for mobile
+      }
+
+      @media (max-width: $breakpoint-s) {
+        font-size: 12px; // Further adjust font size for small screens
+      }
+
+      .price-tax-label {
+        display: inline-block;
+      }
+
+      .price-without-tax {
+        color: #666666;
+      }
+    }
+
+    .product-item-actions {
+      text-align: center;
+
+      .button {
+        display: block;
+        width: 100%;
+        margin: 0 auto rem-calc(5);
+        padding-left: 0.25em;
+        padding-right: 0.25em;
+
+        & ~ .button {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .button-primary {
+      align-self: center;
+      margin-top: auto;
+      width: 100%;
+      white-space: nowrap;
+      background-color: $color-button-background; // Primary color for better visibility
+      color: #fff; // White text color for contrast
+      padding: 8px 16px; // More padding for a better touch area
+      border-radius: 5px; // Rounded corners for buttons
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover {
+        background-color: darken($color-button-background-hover, 10%);
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-m) {
+  .product-grid-item {
+    flex: 1 1 calc(50% - #{10px * 2});
+
+    .product-item-container {
+      padding: 15px;
+
+      .product-item-thumbnail {
+        height: 150px; // Slightly reduce the height for mobile
+      }
+
+      .product-item-title {
+        font-size: 12px; // Apply smaller font size for mobile
+        text-align: left;
+        margin: rem-calc(3) 0; // Further reduce margin
+      }
+
+      .product-item-details {
+        padding: 0 15px;
+      }
+
+      .product-item-price {
+        font-size: 14px; // Smaller font size for mobile
+        
+      }
+
+      .product-item-brand1,
+      .product-item-brand2,
+      .product-item-brand3 {
+        font-size: 10px; // Smaller font size for mobile
+        margin: 2px 0; // Reduce margin
+      }
+
+      .button {
+        margin: rem-calc(3) 0; // Further reduce margin
+        padding: 6px 12px; // Reduce padding for buttons
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-s) {
+  .product-grid-item {
+    flex: 1 1 calc(100% - #{10px * 2});
+
+    .product-item-container {
+      padding: 15px;
+
+      .product-item-thumbnail {
+        height: 120px; // Further reduce the height for small screens
+      }
+
+      .product-item-title {
+        font-size: 10px; // Apply smaller font size for small screens
+        text-align: left;
+        margin: rem-calc(3) 0; // Further reduce margin for small screens
+      }
+
+      .product-item-details {
+        padding: 0 15px;
+      }
+
+      .product-item-price {
+        font-size: 12px; // Further adjust font size for small screens
+      
+      }
+
+      .product-item-brand1,
+      .product-item-brand2,
+      .product-item-brand3 {
+        font-size: 10px; // Smaller font size for mobile
+        margin: 1px 0; // Further reduce margin for small screens
+      }
+
+      .button {
+        margin: rem-calc(3) 0; // Further reduce margin for small screens
+        padding: 4px 10px; // Further reduce padding for buttons
+      }
+    }
+  }
+}
+
+.product-item-brand1 {
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 2px 0; // Reduce margin
+  height: 20px; // Reduce height
+  width: 70px; // Reduce width
+  align-items: center;
+  font-size: 10px; // Reduce font size
+  border-radius: 3px;
+  background-color: #36af74;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: left;
+  text-decoration: none;
+  cursor: default;
+  white-space: nowrap;
+}
+.product-item-brand2 {
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 2px 0; // Reduce margin
+  height: 20px; // Reduce height
+  width: 50px; // Reduce width
+  align-items: center;
+  font-size: 10px; // Reduce font size
+  border-radius: 3px;
+  background-color:#ff6b6b ;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: left;
+  text-decoration: none;
+  cursor: default;
+  white-space: nowrap;
+}
+
+.product-item-brand3 {
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 2px 0; // Reduce margin
+  height: 20px; // Reduce height
+  width: 50px; // Reduce width
+  align-items: center;
+  font-size: 10px; // Reduce font size
+  border-radius: 3px;
+  background-color: #911f1f;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: left;
+  text-decoration: none;
+  cursor: default;
+  white-space: nowrap;
+}

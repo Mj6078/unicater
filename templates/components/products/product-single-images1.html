@@ -1,0 +1,56 @@
+<div class="product-images-container">
+    <div class="product-images-loader">
+      <svg class="icon icon-spinner">
+        <use xlink:href="#icon-spinner" />
+      </svg>
+    </div>
+  
+    <div class="product-slides-container">
+      <div class="product-slides-wrap">
+        {{#if images}}
+          {{#each images}}
+            <a
+              class="product-image"
+              style="background-image:url({{getImage this 'zoom'}});"
+              href="{{getImage this 'zoom'}}"
+              data-product-image
+            >
+               <img
+                 src="{{getImage this 'product'}}"
+                 alt="{{alt}}"
+                 data-lazy="{{getImage this 'product'}}"
+                >
+            </a>
+          {{/each}}
+        {{else}}
+          <img
+            src="{{getImage this 'small-thumb'}}"
+            alt="{{this.alt}}"
+            data-lazy="{{getImage this 'small-thumb'}}"
+          >
+        {{/if}}
+      </div>
+    </div>
+    
+    <div class="product-images-pagination">
+      {{#each images}}
+        <div class="pagination-item">
+          {{> components/common/responsive-image
+            image=this
+            fit=../theme_settings.product_grid_image_cropping
+            lazyload=../theme_settings.lazyload_mode
+            fallback_size=../theme_settings.small-thumb
+            default_image=../theme_settings.default_image
+          }}
+        </div>
+      {{/each}}
+    </div>
+    <img style="margin-top: 20px;" class="adbanner" src="https://img.freepik.com/free-photo/abstract-autumn-beauty-multi-colored-leaf-vein-pattern-generated-by-ai_188544-9871.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1718841600&semt=ais_user">
+  </div>
+  <style>
+    @media (max-width: 1000px){
+      .adbanner{
+        display: none;
+      }
+    }
+  </style>

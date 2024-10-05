@@ -1,0 +1,16 @@
+
+<div class="breadcrumbs-container">
+  <ul class="breadcrumbs">
+    {{#each this}}
+      <li style="margin-top: 20px;" class="breadcrumb {{#if @last}}is-active{{/if}}">
+        {{#if url}}
+          <a style="font-size: 12px; text-transform: none;" href="{{url}}" class="breadcrumb-label breadcrumb-link"><span itemprop="name">{{name}}</span></a>
+        {{else}}
+          <span class="breadcrumb-label">
+            <span itemprop="name">{{name}}</span>
+          </span>
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
+</div>

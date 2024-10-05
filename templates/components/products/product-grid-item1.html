@@ -1,0 +1,34 @@
+<article class="custom-product-item" data-product-title="{{name}}" data-product-id="{{id}}"
+  data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}"
+  data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+  data-product-brand="{{brand.name}}"
+  data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"
+  data-product-variant="single-product-option">
+
+  <div class="product-item-container1">
+    <figure class="product-item-thumbnail1">
+      <a href="{{url}}" class="image-ratio">
+        {{> components/common/responsive-image
+        image=image
+        class="custom-product-item-image"
+        fit=fit
+        fallback_size=fallback_size
+        lazyload=lazyload
+        default_image=default_image
+        }}
+      </a>
+    </figure>
+    <div class="custom-product-item-details">
+      <h5 class="custom-product-item-title">
+        <a href="{{url}}" alt="{{name}}">{{name}}</a>
+      </h5>
+      <div class="custom-product-item-price">
+        {{#if price.with_tax}}
+          {{price.with_tax.formatted}}
+        {{else}}
+          {{price.without_tax.formatted}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</article>

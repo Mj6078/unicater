@@ -1,0 +1,195 @@
+<a href="#" class="modal-close">
+  {{> svg/close}}
+</a>
+
+<div class="modal-body">
+  <section
+  class="
+    product-details
+    product-block
+    section
+    {{#unless quick_view}}
+      product-single
+    {{/unless}}
+    {{cart_icon}}-icon
+    {{theme_settings.product-single-display-order}}
+  "
+  {{#if quick_view}}
+    data-product-quickshop-container
+  {{else}}
+    data-product-container
+  {{/if}}
+  data-product-title="{{product.title}}"
+  data-product-id="{{product.id}}"
+  data-event-type="product"
+  data-entity-id="{{product.id}}"
+  data-name="{{product.title}}"
+  data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+  data-product-brand="{{product.brand.name}}"
+  data-product-price="{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}"
+  data-product-variant="single-product-option"
+>
+
+  <div class="container">
+   
+    <div class="product-details-column">
+      {{> components/products/product-single-images
+        images=product.images
+        default_image=theme_settings.default_image
+      }}
+    </div>
+
+    <div class="product-details-column">
+        {{#if product.brand}}
+          <h2 class="product-brand">{{product.brand.name}}</h2>
+        {{/if}}
+    
+        <h1 class="product-title">{{this.product.title}}</h1>
+    
+        {{#if product.release_date }}
+          <p class="message neutral">{{product.release_date}}</p>
+        {{/if}}
+       
+        <div class="product-price">
+          
+          {{#if product.price}}
+            {{> core/products/price1
+              price=product.price
+              show_savings=true
+              save_block=true
+              show_tax_labels=true
+              show_sale_badges=false
+              price_range_display=theme_settings.price_range_display
+              retail_price_label=theme_settings.retail-price-label
+              non_sale_price_label=theme_settings.non-sale-price-label
+              sale_price_label=theme_settings.sale-price-label
+              price_label=theme_settings.price-label
+            }}
+          {{/if}}
+    
+          {{#if product.call_for_price}}
+            <p>{{product.call_for_price}}</p>
+          {{/if}}
+
+        </div>
+    
+        {{{region name="product_below_price"}}}
+    
+        <div class="product-rating-block">
+          {{#if settings.show_product_rating}}
+            <div class="product-item-rating">
+              {{> components/products/ratings rating=this.product.rating}}
+              <span class="reviews-jumplink total-reviews" data-scroll="#product-reviews">
+                ( <a class="product-reviews-link link" href="{{#if quick_view}}{{product.url}}#product-reviews{{else}}#product-reviews{{/if}}">{{lang 'product.reviews.title' numReviews=product.num_reviews}}</a> )
+              </span>
+            </div>
+            {{{snippet 'product_rating'}}}
+          {{/if}}
+        </div> 
+
+        {{#each product.custom_fields}}
+        {{#if name '===' 'per unit price'}}
+        <div class="product-details-price-unit">
+          <span class="product-details-value">£{{value}}</span>
+          <span style="font-size: small; font-weight: 700;  color: #ff0000;"> per unit</span>
+        </div>
+        {{/if}}
+        {{#if name '===' 'quantity'}}
+        <div class="product-details-quantity">
+          <div style="margin-left: 5px; margin-right: 5px;">
+          <span class="product-details-value">{{value}}</span>
+          <span>Unit Per Case</span>
+        </div>
+        </div>
+        {{/if}}
+        {{/each}}
+           
+        {{#if theme_settings.product-single-display-order '===' 'product-description-first'}}
+    
+          <hr>
+    
+          {{> components/products/add-to-cart-form
+            cart_icon=cart_icon
+          }}
+        {{else}}
+          {{> components/products/add-to-cart-form
+            cart_icon=cart_icon
+          }}
+    
+          <hr>
+    
+        {{/if}}
+
+        <div class="product-message-area" data-product-alerts></div>
+    
+        {{#if quick_view}}
+          <a class="quick-shop-details-lower link" href="{{this.product.url}}">
+            {{lang 'product.view_full_details'}}
+          </a>
+        {{/if}}
+    
+
+    {{{snippet 'product_details'}}}
+
+  </div>
+</section>
+</div>
+<style>
+
+  .product-details-price-unit {
+    
+    .product-details-value {
+      font-size: medium;
+      color: #ff0000;
+      font-weight: bold;
+    }
+    span {
+      font-size: 20px;
+      color: #333;
+    }
+  }
+  
+  .product-details-quantity {
+    border: 2px solid #539c2c;
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f8f8f8;
+    margin-bottom: 15px;
+  }
+  .product-details-quantity:hover {
+    background-color: #e8e8e8;
+  }
+  
+  .product-details-quantity .product-details-value {
+    font-weight: bold;
+    font-size: large;
+  }
+  
+  .product-details-quantity span {
+    font-size: medium;
+    color: #333;
+  }
+  
+  .product-price {
+    .sale-badge {
+      background-color: #ffcc00;
+      color: #000;
+      padding: 5px 10px;
+      font-weight: bold;
+    }
+  
+    .price-old {
+      text-decoration: line-through;
+      color: #777;
+    }
+  
+    .price-new {
+      color: #e6007e;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+  
+  </style>
+  

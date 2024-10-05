@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Price</title>
+    <style>
+        .savings {
+            border-radius: 5px; /* Rounded corners */
+            background-color: #007e8a; /* Light tomato background */
+            color: #ffffff; /* Tomato text color */
+            padding: 5px 10px;
+            font-size: 14px;
+            text-align: center;
+            width: fit-content;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for better appearance */
+        }
+        .price-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .price-ns {
+            text-decoration: line-through;
+            color: gray;
+            font-size: 20px;
+        }
+        .price-value {
+            font-size: 24px;
+            color: #a2004c;
+        }
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+        }
+        .toggle-container label {
+            font-size: 16px;
+        }
+        .toggle-container input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            appearance: none;
+            background-color: #ffffff;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+        }
+        .toggle-container input[type="checkbox"]:checked {
+            background-color: #007e8a;
+            border-color: #007e8a;
+        }
+        .toggle-container input[type="checkbox"]:checked::after {
+            content: '✔';
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    
+        <div class="toggle-container">
+            <input type="checkbox" id="toggleVAT" onchange="toggleVAT()">
+            <label style="color: black;" for="toggleVAT">Incl. VAT</label>
+        </div>
+
+    <div class="product-price">
+        <div class="price-withouttax" id="priceWithoutVAT">
+            <div class="price-display">
+                <div id="savingsWithoutVAT"></div>
+                {{#if price.non_sale_price_without_tax}}
+                    <div class="price-ns">{{price.non_sale_price_without_tax.formatted}}</div>
+                {{/if}}
+                <div class="price-value">{{price.without_tax.formatted}}</div>
+            </div>
+        </div>
+        <div class="price-withtax" id="priceWithVAT" style="display: none;">
+            <div class="price-display">
+                <div id="savingsWithVAT"></div>
+                {{#if price.non_sale_price_with_tax}}
+                    <div class="price-ns">{{price.non_sale_price_with_tax.formatted}}</div>
+                {{/if}}
+                <div class="price-value">{{price.with_tax.formatted}}</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to calculate the percentage savings
+            function calculateSavings(salePrice, nonSalePrice) {
+                if (salePrice && nonSalePrice) {
+                    const salePriceValue = parseFloat(salePrice.replace(/[^0-9.-]+/g, ""));
+                    const nonSalePriceValue = parseFloat(nonSalePrice.replace(/[^0-9.-]+/g, ""));
+                    
+                    if (nonSalePriceValue > 0) {
+                        const percentageSaved = 100 - (salePriceValue * 100 / nonSalePriceValue);
+                        return percentageSaved.toFixed(2); // Return the savings percentage rounded to 2 decimal places
+                    }
+                }
+                return null; // Return null if calculation is not possible
+            }
+
+            // Store the savings percentage globally
+            let savingsPercentageWithoutVAT = null;
+            let savingsPercentageWithVAT = null;
+
+            // Get price values from the DOM
+            const priceWithoutTaxElement = document.querySelector('.price-withouttax .price-value');
+            const nonSalePriceWithoutTaxElement = document.querySelector('.price-withouttax .price-ns');
+            const savingsWithoutVAT = document.getElementById('savingsWithoutVAT');
+
+            if (priceWithoutTaxElement) {
+                const priceWithoutTax = priceWithoutTaxElement.textContent;
+                const nonSalePriceWithoutTax = nonSalePriceWithoutTaxElement ? nonSalePriceWithoutTaxElement.textContent : priceWithoutTax;
+                savingsPercentageWithoutVAT = calculateSavings(priceWithoutTax, nonSalePriceWithoutTax);
+                if (savingsPercentageWithoutVAT !== null && savingsPercentageWithoutVAT > 0) {
+                    savingsWithoutVAT.innerHTML = `<div class="savings">Sales - 🏷️ ${savingsPercentageWithoutVAT}%</div>`;
+                } else {
+                    savingsWithoutVAT.innerHTML = ''; // Clear the savings message if no savings
+                }
+            }
+
+            // Similar calculation for price with tax if required
+            const priceWithTaxElement = document.querySelector('.price-withtax .price-value');
+            const nonSalePriceWithTaxElement = document.querySelector('.price-withtax .price-ns');
+            const savingsWithVAT = document.getElementById('savingsWithVAT');
+
+            if (priceWithTaxElement) {
+                const priceWithTax = priceWithTaxElement.textContent;
+                const nonSalePriceWithTax = nonSalePriceWithTaxElement ? nonSalePriceWithTaxElement.textContent : priceWithTax;
+                savingsPercentageWithVAT = calculateSavings(priceWithTax, nonSalePriceWithTax);
+                if (savingsPercentageWithVAT !== null && savingsPercentageWithVAT > 0) {
+                    savingsWithVAT.innerHTML = `<div class="savings">Sales - 🏷️ ${savingsPercentageWithVAT}%</div>`;
+                } else {
+                    savingsWithVAT.innerHTML = ''; // Clear the savings message if no savings
+                }
+            }
+
+            // Function to toggle VAT display
+            function toggleVAT() {
+                var checkBox = document.getElementById("toggleVAT");
+                var originalPriceWithoutVAT = document.querySelector(".price-withouttax");
+                var originalPriceWithVAT = document.querySelector(".price-withtax");
+
+                if (checkBox.checked) {
+                    originalPriceWithoutVAT.style.display = "none";
+                    originalPriceWithVAT.style.display = "block";
+                } else {
+                    originalPriceWithoutVAT.style.display = "block";
+                    originalPriceWithVAT.style.display = "none";
+                }
+            }
+
+            // Attach the toggleVAT function to the checkbox
+            document.getElementById("toggleVAT").addEventListener('change', toggleVAT);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+{{!
+  @param all_item
+         > either true or false, passed from parent template
+}}
+
+<a href="{{url}}" {{#if children}}data-toggle-mobile="{{url}}" data-mobile-name="{{name}}"{{/if}}>{{name}}{{#if children}}{{> svg/arrow-down}}{{/if}}</a>
+{{#if children}}
+  <ul class="nav-mobile-panel nav-mobile-panel-child is-right" data-mobile-menu="{{url}}">
+    <li class="nav-mobile-item nav-mobile-panel-title">{{name}}</li>
+    <li class="nav-mobile-item nav-mobile-item-all">
+      <a href="{{url}}">{{#if all_item}}{{lang 'common.navigation_all'}}{{/if}} {{name}}</a>
+    </li>
+    {{#each children}}
+      <li class="nav-mobile-item {{#if children}}has-children{{/if}}">
+        {{!-- Check if it's a tier 2 category --}}
+        <a href="{{url}}" {{#if children}}data-toggle-mobile="{{url}}" data-mobile-name="{{name}}"{{/if}}>{{name}}{{#if children}}{{> svg/arrow-down}}{{/if}}</a>
+        {{#if children}}
+          <ul class="nav-mobile-panel nav-mobile-panel-child is-right" data-mobile-menu="{{url}}">
+            <li class="nav-mobile-item nav-mobile-panel-title">{{name}}</li>
+            <ul class="tier-3-categories">
+              {{#each children}}
+  <li class="tier-3-category">
+    <a href="{{url}}" data-toggle-mobile="{{url}}" data-mobile-name="{{name}}" class="category-link">
+      <div class="category-wrapper">
+        <img src='{{getImage image "thumbnail"}}' alt="{{name}}" class="category-image">
+        <span class="category-name">{{name}}</span>
+      </div>
+    </a>
+  </li>
+{{/each}}
+
+            </ul>
+          </ul>
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
+{{/if}}
+
+<style>
+  /* CSS for the layout */
+/* CSS for the layout */
+/* CSS for the layout */
+.tier-3-categories {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tier-3-category {
+  display: block;
+  margin-right: 20px;
+  margin-bottom: 10px; /* Adjust margin between categories */
+}
+.category-wrapper {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 0; /* Reset padding to zero */
+  margin: 0; /* Reset margin to zero */
+  display: flex;
+  align-items: center;
+  height: 70px;
+
+}
+
+.category-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.category-name {
+  margin: 0;
+  align-items: right;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+
+
+</style>

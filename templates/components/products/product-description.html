@@ -1,0 +1,19 @@
+{{#if theme_settings.product-single-display-order '===' 'product-description-first'}}
+  <div class="product-description">
+    {{{product.description}}}
+
+    {{{snippet 'product_description'}}}
+  </div>
+
+  {{> components/products/product-stock}}
+{{else}}
+  {{> components/products/product-stock}}
+
+  <div class="product-description">
+    {{{product.description}}}
+
+    {{{snippet 'product_description'}}}
+  </div>
+{{/if}}
+
+{{> components/products/bulk-pricing}}

@@ -1,0 +1,17 @@
+{{#if banners}}
+  <div class="banners {{class}}">
+    {{#each (limit banners 1)}}
+      <div
+        class="banner rte"
+        data-event-type="promotion"
+        data-entity-id="{{this.id}}"
+        data-name="{{this.banner-name}}"
+        data-position="{{this.location}}"
+      >
+        <div data-event-type="promotion-click">
+          {{{this.content}}}
+        </div>
+    </div>
+    {{/each}}
+  </div>
+{{/if}}

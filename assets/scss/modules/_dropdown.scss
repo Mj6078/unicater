@@ -1,0 +1,95 @@
+.dropdown {
+  position: relative;
+}
+
+.dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0 auto; /* This centers the dropdown */
+  z-index: 1000;
+  display: none;
+  max-width: 70%; /* Set the maximum width */
+  width: auto; /* Set width to auto */
+  max-height: calc(100vh - 112px);
+  padding: rem-calc(10);
+  overflow: auto;
+  
+  &.animating,
+  &.visible {
+    display: block;
+  }
+
+  &.animating-in,
+  &.animating-out {
+    transition: none;
+  }
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.icon-arrow-down {
+  display: inline-block;
+  margin-top: -0.03em;
+  margin-left: 0.5em;
+  vertical-align: middle;
+  transition: transform 0.3s ease;
+
+  .dropdown-open & {
+    transform: rotate(-180deg);
+  }
+
+  .nav-mobile-panel-parent .nav-mobile-item-parent & {
+    margin-top: -0.1rem;
+  }
+}
+
+// Dropdown tier Styles
+.tier-toggle {
+  padding: rem-calc(5) 0 !important; //override padding from .main-nav-bar dropdown selector
+  background: transparent;
+}
+
+.tier-open > a {
+  color: contrast($color-nav-active, 100%);
+}
+
+.tier-panel {
+  position: static;
+  display: block; /* Ensure tier 3 categories are visible */
+  padding: 0 0 0 rem-calc(10);
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+  width: 1500px;
+  height: 100px;
+
+  &.tier-open { display: block; }
+
+  &.animating,
+  &.visible {
+    display: block;
+  }
+
+  &.animating-in,
+  &.animating-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  &.visible {
+    opacity: 1;
+  }
+
+  a {
+    white-space: nowrap;
+
+    .main-dropdown & {
+      line-height: 30px;
+    }
+  }
+}

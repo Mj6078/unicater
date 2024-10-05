@@ -1,0 +1,162 @@
+<header class="site-header logo-align-{{theme_settings.global-header-logo-alignment}}" role="banner">
+  <div data-alerts>
+    {{#each product.reviews.messages}}
+      {{#if error}}
+        {{> core/alerts/alert-error message=error dismissable=true}}
+      {{/if}}
+      {{#if success}}
+        {{> core/alerts/alert-success message=success dismissable=true}}
+      {{/if}}
+    {{/each}}
+    {{#if cart.status_messages}}
+      {{#each cart.status_messages}}
+        {{#if type '==' 0}}
+          {{> core/alerts/alert-error message=message dismissable=true}}
+        {{/if}}
+        {{#if type '==' 1}}
+          {{> core/alerts/alert-success message=message dismissable=true}}
+        {{/if}}
+        {{#if type '==' 3}}
+          {{> core/alerts/alert-error message=message dismissable=true}}
+        {{/if}}
+      {{/each}}
+    {{/if}}
+  </div>
+
+  <section class="top-bar">
+    <div class="site-alerts" {{#if theme_settings.global-header-logo-alignment '==' 'center'}} data-cart-promos{{/if}}>
+      {{> components/header/shipping-messages}}
+    </div>
+    <div class="container">
+      <div class="top-bar-center">
+        {{#if theme_settings.global-header-logo-alignment '!=' 'center'}}
+          <div data-cart-promos>
+            {{> components/header/shipping-messages}}
+          </div>
+        {{/if}}
+        <div style="max-width: 300px;">
+        {{> components/header/site-branding}}
+      </div>
+      </div>
+      <button class="button-mobile-nav-toggle {{#if cart.status_messages}} has-promo {{/if}}">
+        <i class="burger"></i>
+      </button>
+    </div>
+  </section>
+
+  <section class="main-nav-bar">
+    <div class="container">
+      {{#if theme_settings.global-header-logo-alignment '===' 'left'}}
+        {{> components/header/site-navigation-left-align}}
+      {{/if}}
+      {{#if theme_settings.global-header-logo-alignment '===' 'center'}}
+        {{> components/header/site-navigation-center-align}}
+      {{/if}}
+      {{#if theme_settings.global-header-logo-alignment '===' 'right'}}
+        {{> components/header/site-navigation-right-align}}
+      {{/if}}
+
+      <div class="header-buttons">
+        <div class="button-group">
+          <div class="repeat-order-container">
+            <a href="https://unicater.co.uk/contact-form/">
+              <button class="repeat-order-button">Contact Us</button>
+            </a>
+          </div>
+          <div class="deals-container">
+            <a href="/deals">
+              <button class="repeat-order-button">Deals</button>
+            </a>
+          </div>
+        </div>
+        <div class="customer-links-container">
+          {{#if settings.account_creation_enabled}}
+          <div class="customer-links">
+            {{#if customer}}
+              {{#contains page_type 'account'}}
+                <a class="top-bar-button" href="{{urls.auth.logout}}">
+                  {{> svg/singout}}
+                </a>
+              {{else}}
+                <a class="top-bar-button" href="{{urls.account.index}}">
+                  {{> svg/account}}
+                </a>
+              {{/contains}}
+            {{else}}
+              <a class="top-bar-button" href="{{urls.auth.login}}">
+                {{> svg/account}}
+              </a>
+            {{/if}}
+          </div>
+        {{/if}}
+        {{#if settings.show_wishlist}}
+        <a class="top-bar-button button-wishlist" href="{{urls.account.wishlists.all}}">
+          {{> svg/wishlist}}
+        </a>
+        {{/if}}
+        <span class="button-mobile-nav-cart {{#if cart.status_messages}} has-promo {{/if}}">
+          <a href="{{urls.cart}}">
+            {{> components/header/cart-icon}}
+          </a>
+        </span>
+        <button class="top-bar-button button-cart-toggle {{#unless settings.show_wishlist}} no-wishlist {{/unless}}">
+          {{> components/header/cart-icon}}
+        </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>
+
+<style>
+
+.button-group {
+  display: flex;
+  align-items: center;
+}
+
+.repeat-order-container{
+  margin-right: 10px;
+}
+
+.deals-container {
+  margin-right: 10px;
+  width: 80px;
+}
+
+.repeat-order-button {
+  border: 0;
+  padding: 12.5px 5px;
+  border-radius: 8px;
+  background-color: #36AF74;
+  color: #ffffff;
+  font-weight: bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  cursor: pointer;
+  text-align: center; /* Center the text within the buttons */
+  height: 35px; /* Set a fixed height */
+  display: flex;
+  align-items: center; /* Ensure content is vertically centered */
+}
+
+.repeat-order-button:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Change to a semi-transparent background */
+  color: rgb(252,110,86);
+
+}
+
+.repeat-order-button:active {
+  background-color: #36AF74;
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
+}
+
+.customer-links-container {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+</style>

@@ -1,0 +1,119 @@
+{{!--
+  Product Grid Item - As displayed within a grid listing of products.
+
+  @param product object
+    The product object to display, handed over from the loop
+
+  @param show_compare bool
+    Whether to show "compare" checkboxes
+
+  @param quick_shop theme-setting
+    Theme setting to enable / disable quickshop
+
+  @param image_ratio theme-setting
+    The image ratio for this grid
+
+  @param default theme-setting
+    The default image if none exists
+
+  @param show_rating platform-setting
+    Platform setting to toggle ratings
+
+  @param as_low_as theme-setting
+    The setting to show/hide as low as price wording
+--}}
+
+<article
+  class="product-list-item product-block"
+  data-product-title="{{name}}"
+  data-product-id="{{id}}"
+  data-event-type="{{event}}"
+  data-entity-id="{{id}}"
+  data-position="{{position}}"
+  data-name="{{name}}"
+  data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+  data-product-brand="{{brand.name}}"
+  data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"
+>
+  <div class="product-thumb-wrapper">
+    <figure class="product-item-thumbnail {{image_ratio}}">
+      {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+      {{#unless out_of_stock_message}}
+        {{#if show_sale_badges}}
+          <div class="product-badge">
+            {{lang 'product.sale'}}
+          </div>
+          {{/if}}
+        {{/unless}}
+      {{/or}}
+      {{#if out_of_stock_message}}
+        <div class="product-badge sold-out">
+          <span class="message">
+            {{out_of_stock_message}}
+          </span>
+        </div>
+      {{/if}}
+      {{> components/common/responsive-image
+        image=image
+        class="product-item-image"
+        fit=fit
+        fallback_size=fallback_size
+        lazyload=lazyload
+        default_image=default_image
+      }}
+    </figure>
+  </div>
+
+  <div class="product-item-details">
+    {{#if brand.name}}
+      <div class="product-item-brand">{{brand.name}}</div>
+    {{/if}}
+    <h5 class="product-item-title">
+      <a href="{{url}}" alt="{{name}}">{{name}}</a>
+    </h5>
+
+    {{#if show_rating}}
+      <p class="product-item-rating">
+        <span class="rating-title">{{rating}} {{lang 'product.stars'}}</span>
+        {{> components/products/ratings rating=rating}}
+      </p>
+
+      {{{snippet 'product_rating'}}}
+    {{/if}}
+
+    <div class="product-description">
+      {{{summary}}}
+    </div>
+  </div>
+
+  <div class="product-item-actions">
+    <div class="product-item-price" data-product-price="{{price.without_tax.formatted}}">
+      {{> core/products/price
+        price=price
+        show_tax_labels=true
+        show_sale_badges=false
+        price_range_display=price_range_display
+        retail_price_label=retail_price_label
+        non_sale_price_label=non_sale_price_label
+        sale_price_label=sale_price_label
+        price_label=price_label
+      }}
+    </div>
+
+    {{#if quick_shop}}
+      <button class="button button-secondary button-short button-wide" data-quick-shop data-product-id="{{id}}">
+        {{lang 'product.quick_view'}}
+      </button>
+    {{/if}}
+
+    {{#if show_compare}}
+      <label class="button button-short button-wide form-label product-item-compare" for="compare-{{id}}">
+        {{> components/common/compare-checkbox}}
+        <span class="form-label-text">
+          {{lang "product.compare"}}
+          <svg class="icon icon-check-mark"><use xlink:href="#icon-check-mark" /></svg>
+        </span>
+      </label>
+    {{/if}}
+  </div>
+</article>

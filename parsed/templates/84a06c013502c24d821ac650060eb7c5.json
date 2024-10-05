@@ -1,0 +1,3 @@
+{
+  "components/products/product-stock": "<div class=\"product-stock\">\n\t<span\n\t\tclass=\"{{#unless product.stock_level}}product-details-hidden{{/unless}}\"\n\t\tdata-product-stock\n\t>\n\t\t{{lang 'product.current_stock'}}\n\t</span>\n\t<span\n\t\tclass=\"{{#unless product.stock_level}}product-details-hidden{{/unless}}\"\n\t\tdata-product-stock\n\t\tdata-product-stock-level\n\t>\n\t\t{{product.stock_level}}\n\t</span>\n</div>\n"
+}

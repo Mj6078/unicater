@@ -1,0 +1,223 @@
+.mini-cart {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100%;
+  background-color: $color-mini-cart-background;
+  transition: transform .3s ease;
+
+  @if ($color-mini-cart-background == $color-background) {
+    box-shadow: 1px 0 0 0 $color-border inset;
+  }
+
+  .no-js & { overflow: auto; }
+
+  .button-checkout {
+    @extend %button-inverse;
+  }
+}
+
+.mini-cart-inner {
+  position: relative;
+  top: 0;
+}
+
+.mini-cart-top-bar {
+  @include white-text($color-mini-cart-background);
+
+  .button-cart-close {
+    position: absolute;
+    top: rem-calc(40);
+    right: rem-calc(25);
+    padding: 0;
+    background: none;
+
+    .icon-close {
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+}
+
+.mini-cart-contents {
+  > .icon-spinner {
+    display: block;
+    margin: rem-calc(20) auto;
+  }
+}
+
+.mini-cart-title {
+  @include white-text($color-mini-cart-background);
+  font-size: 18px;
+  text-align: center;
+  font-family: $font-primary;
+  font-weight: 300;
+  text-transform: none;
+  margin: 0;
+  padding: rem-calc(40) 0;
+}
+
+.mini-cart-empty {
+  @include white-text($color-mini-cart-background);
+  text-align: center;
+}
+
+.mini-cart-item {
+  @include white-text($color-mini-cart-background);
+  position: relative;
+  transition: background-color 0.3s ease;
+
+  &:not(:last-of-type) {
+    &:after {
+      display: block;
+      width: calc(100% - 50px);
+      height: 1px;
+      margin-left: 25px;
+      background-color: rgba(contrast($color-mini-cart-background, 100%), 0.05);
+      content: "";
+    }
+  }
+
+  &:hover {
+    background-color: darken($color-mini-cart-background, 5%);
+
+    &:after {
+      background-color: darken($color-mini-cart-background, 5%);
+    }
+
+    .mini-cart-item-actions {
+      opacity: 1;
+    }
+  }
+
+  &.removing {
+    .mini-cart-item-wrap {
+      pointer-events: none;
+      opacity: 0.2;
+    }
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .icon-spinner {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+  }
+}
+
+.mini-cart-item-wrap {
+  @include layout-group();
+  padding: 25px;
+
+  & > * {
+    @include layout-group-item();
+  }
+
+  .giftcard-image {
+    width: 75px;
+  }
+}
+
+.mini-cart-item-thumb {
+  position: relative;
+  width: 75px;
+
+  &.no-image {
+    background-color: $color-background;
+
+    @if ($color-mini-cart-background == $color-background) {
+      box-shadow: 1px 0 0 0 $color-border inset;
+    }
+  }
+}
+
+.mini-cart-item-image {
+  @include lazy-loaded-img;
+  width: 100%;
+  height: 100%;
+}
+
+.mini-cart-item-title {
+  font-family: $font-secondary, 'Metropolis', sans-serif;
+  font-weight: bold;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+
+.mini-cart-item-options {
+  padding-top: 2px;
+  padding-bottom: 2px;
+
+  .option-value {
+    margin-right: 4px;
+    color: $color-body;
+
+    &:not(:last-child):after {
+      content: ",";
+    }
+  }
+}
+
+.mini-cart-item-description {
+  vertical-align: middle;
+  padding-left: 20px;
+  width: 90%;
+}
+
+.mini-cart-item-actions {
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  .link {
+    margin-right: 14px;
+  }
+}
+
+.mini-cart-item-price {
+  text-align: right;
+  vertical-align: bottom;
+  opacity: 0.6;
+
+  .price-discounted { text-decoration: line-through; }
+}
+
+.mini-cart-footer {
+  padding: 25px;
+  border-top: 1px solid rgba(contrast($color-mini-cart-background, 100%), 0.05);
+
+  .mini-cart-subtotal {
+    float: right;
+    font-size: 111%;
+    vertical-align: middle;
+  }
+}
+
+.mini-cart-footer-title {
+  color: contrast($color-mini-cart-background, 100%);
+}
+
+.mini-cart-actions {
+  .button {
+    width: calc(50% - 5px);
+
+    & + .button { float: right; }
+  }
+
+  .button-secondary {
+    @include white-text($color-mini-cart-background);
+
+    @if lightness($color-mini-cart-background) < 33 {
+      box-shadow: 0 0 0 2px contrast($color-mini-cart-background, 100%) inset;
+    }
+
+    &:hover {
+      box-shadow: 0 0 0 2px $color-button-secondary inset;
+    }
+  }
+}

@@ -1,0 +1,114 @@
+// Advanced Search Form
+.advanced-search-form {
+
+  .advanced-search {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .form-field-title {
+    display: block;
+    text-align: left;
+  }
+
+  .form-input {
+    width: 100%;
+  }
+
+  .categories-group {
+    padding: 20px;
+    overflow-y: auto;
+    text-align: left;
+  }
+
+  .advanced-search-price-range,
+  .form-field-select {
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: calc(50% - 15px);
+    }
+  }
+
+  .form-field-select {
+    .form-select-wrapper {
+      display: block;
+      margin-left: 0
+    }
+  }
+
+  .advanced-search-price-range {
+    text-align: left;
+
+    .form-input {
+      height: 60px;
+    }
+
+    .form-field {
+      display: inline-block;
+      width: calc(50% - 15px);
+
+      + .form-field {
+        margin-left: 15px;
+      }
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    padding-top: 40px;
+    margin-top: 10px;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+
+    .button {
+      width: 50%;
+
+      @media (min-width: 768px) {
+        width: auto;
+      }
+    }
+  }
+}
+
+// Category Tree
+.bonsai,
+.bonsai > li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+
+.bonsai > li {
+  position: relative;
+  padding-left: 1.3em; /* padding for the thumb */
+}
+
+li .thumb {
+  margin: -1px 0 0 -1em; /* negative margin into the padding of the li */
+  position: absolute;
+  cursor: pointer;
+}
+
+li.has-children > .thumb:after {
+  content: '▸';
+}
+
+li.has-children.expanded > .thumb:after {
+  content: '▾';
+}
+
+li.collapsed > ol.bonsai {
+  height: 0;
+  overflow: hidden;
+}
+
+.bonsai .all,
+.bonsai .none {
+  cursor: pointer;
+}

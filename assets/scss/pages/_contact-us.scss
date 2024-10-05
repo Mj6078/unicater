@@ -1,0 +1,20 @@
+.form-contact-us {
+  @extend %form-base-style;
+  max-width: 1440px !important;
+  align-items: center;
+  justify-content: center;
+
+  .form-input {
+    width: 100%;
+  }
+
+  .form-actions {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .form-contact-us {
+    width: 80% !important;
+  }
+}

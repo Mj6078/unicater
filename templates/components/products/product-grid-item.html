@@ -1,0 +1,171 @@
+<article class="product-grid-item product-block" data-product-title="{{name}}" data-product-id="{{id}}"
+  data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}"
+  data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+  data-product-brand="{{brand.name}}"
+  data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"
+  data-product-title="{{product.title}}" data-product-id="{{product.id}}" data-event-type="product"
+  data-name="{{product.title}}"
+  data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+  data-product-brand="{{product.brand.name}}"
+  data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"
+  data-product-variant="single-product-option">
+
+  <div class="product-item-container">
+    <div class="icon-container">
+      {{#if quick_shop}}
+      <div class="quick-view-icon1" 
+      data-quick-shop 
+      data-product-id="{{id}}"
+      >
+       
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-search"
+    >
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+      </div>
+      {{/if}}
+
+      {{#each custom_fields}}
+      {{#if name '===' 'recycle'}}
+      <div class="recycle-icon">
+        <img
+          src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/icons8-recycle-24.png?t=1718392046"
+          alt="Recycle Icon">
+      </div>
+      {{else if name '===' 'resuable'}}
+      <div class="recycle-icon">
+        <img
+          src="https://thumbs.dreamstime.com/z/percent-recycled-reusable-product-icon-vector-graphic-design-logo-website-social-media-mobile-app-ui-illustration-percent-264862796.jpg"
+          alt="Recycle Icon">
+      </div>
+      {{/if}}
+      {{/each}}
+    </div>
+    <figure class="product-item-thumbnail">
+      <a href="{{url}}" class="{{image_ratio}}">
+        {{> components/common/responsive-image
+        image=image
+        class="product-item-image"
+        fit=fit
+        fallback_size=fallback_size
+        lazyload=lazyload
+        default_image=default_image
+        }}
+      </a>
+    </figure>
+    <div class="product-item-details">
+      {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+      {{#unless out_of_stock_message}}
+      {{#if show_sale_badges}}
+      <div class="product-item-brand2">{{lang 'product.sale'}}</div>
+      {{/if}}
+      {{/unless}}
+      {{/or}}
+      {{#each custom_fields}}
+      {{#if name '===' 'quantity'}}
+      <div class="product-item-brand1">{{value}} Units</div>
+      {{/if}}
+      {{/each}}
+      <div id="savingsWithoutVAT"></div>
+      <h5 class="product-item-title">
+        <a href="{{url}}" alt="{{name}}">{{name}}</a>
+      </h5>
+      <div class="product-item-price" data-product-price="{{price.without_tax.formatted}}">
+        {{> core/products/price2
+        price=price
+        show_tax_labels=true
+        show_sale_badges=false
+        price_range_display=price_range_display
+        retail_price_label=retail_price_label
+        non_sale_price_label=non_sale_price_label
+        sale_price_label=sale_price_label
+        price_label=price_label
+        }}
+        <div class="custom-fields">
+          {{#each custom_fields}}
+          {{#if name '===' 'per unit price'}}
+          <div class="field">
+            <span class="value">£{{value}}/unit</span>
+          </div>
+          {{/if}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    {{#if out_of_stock_message}}
+    <div class="product-item-brand3">{{out_of_stock_message}}</div>
+    {{/if}}
+    <!-- <a href="{{url}}" class="button button-primary button-short">Buy Now</a> -->
+    <form class="add-to-cart-form" method="post" action="/cart.php" enctype="multipart/form-data">
+      <input type="hidden" name="action" value="add">
+      <input type="hidden" name="product_id" value="{{id}}">
+      {{#if options}}
+        {{#each options}}
+          <input type="hidden" name="attribute[{{id}}]" value="{{values.0.id}}">
+        {{/each}}
+      {{/if}}
+      {{#if out_of_stock_message '===' 'false'}}
+      <!-- If out_of_stock_message is exactly 'false', show the Sold Out button -->
+      <button
+        type="submit"
+        class="
+          button
+          button-primary
+          button-wide
+          add-to-cart
+          button-progress
+          spinner
+        "
+        disabled
+        data-button-purchase
+        data-event-type="product-click"
+      >
+        <span class="button-text">
+          {{lang 'product.sold_out'}}
+        </span>
+      </button>
+    {{else}}
+      <!-- If out_of_stock_message is not 'false', show the regular Add to Cart/Pre-Order button -->
+      <button
+        type="submit"
+        class="
+          button
+          button-primary
+          button-wide
+          add-to-cart
+          button-progress
+          spinner
+        "
+        data-button-purchase
+        data-event-type="product-click"
+      >
+        <span class="button-text">
+          {{#if product.pre_order}}
+            {{lang 'product.pre_order'}}
+          {{else if cart_icon '==' 'bag'}}
+            {{lang 'product.add_to_bag'}}
+          {{else}}
+            {{lang 'product.add_to_cart'}}
+          {{/if}}
+        </span>
+      </button>
+    {{/if}}
+    </form>
+    <article id="product-{{id}}" class="product-card" data-product-id="{{id}}">
+      <div>Can Purchase: <span class="can-purchase">Loading...</span></div>
+      <div>In Stock: <span class="in-stock">Loading...</span></div>
+    </article>
+  
+  </div>
+</article>

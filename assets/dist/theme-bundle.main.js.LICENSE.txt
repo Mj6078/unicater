@@ -1,0 +1,107 @@
+/*!
+ * EventEmitter2
+ * https://github.com/hij1nx/EventEmitter2
+ *
+ * Copyright (c) 2013 hij1nx
+ * Licensed under the MIT license.
+ */
+
+/*!
+ * Revealer 3.0.0
+ *
+ * Copyright 2021, Pixel Union - http://pixelunion.net
+ * Released under the MIT license
+ */
+
+/*!
+ * Trend 0.1.0
+ *
+ * Fail-safe TransitionEnd event for jQuery.
+ *
+ * Adds a new "trend" event that can be used in browsers that don't
+ * support "transitionend".
+ *
+ * NOTE: Only supports being bound with "jQuery.one".
+ *
+ * Copyright 2014, Pixel Union - http://pixelunion.net
+ * Released under the MIT license
+ */
+
+/*!
+ * Trend 1.0.0
+ *
+ * Fail-safe TransitionEnd event for jQuery.
+ *
+ * Adds a new "trend" event that can be used in browsers that don't
+ * support "transitionend".
+ *
+ * NOTE: Only supports being bound with "jQuery.one".
+ *
+ * Copyright 2021, Pixel Union - http://pixelunion.net
+ * Released under the MIT license
+ */
+
+/*!
+ * Validetta (https://github.com/PixelUnion/validetta)
+ * Version 2.0.3
+ * Licensed under MIT (https://github.com/hsnayd/validetta/blob/master/LICENCE)
+ * Copyright 2013-2017 Hasan Aydoğdu - http://www.hasanaydogdu.com 
+ */
+
+/*!
+ * baguetteBox.js
+ * @author  feimosi
+ * @version 1.11.1
+ * @url https://github.com/feimosi/baguetteBox.js
+ */
+
+/*!
+ * imagesLoaded v5.0.0
+ * JavaScript is all like "You images are done yet or what?"
+ * MIT License
+ */
+
+/*! https://mths.be/punycode v1.4.1 by @mathias */
+
+/*! jQuery v3.7.1 | (c) OpenJS Foundation and other contributors | jquery.org/license */
+
+/*! zero-fill. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
+/**
+		 * History.getInternetExplorerMajorVersion()
+		 * Get's the major version of Internet Explorer
+		 * @return {integer}
+		 * @license Public Domain
+		 * @author Benjamin Arthur Lupton <contact@balupton.com>
+		 * @author James Padolsey <https://gist.github.com/527683>
+		 */
+
+/**
+		 * History.isInternetExplorer()
+		 * Are we using Internet Explorer?
+		 * @return {boolean}
+		 * @license Public Domain
+		 * @author Benjamin Arthur Lupton <contact@balupton.com>
+		 */
+
+/**
+ * History.js Core
+ * @author Benjamin Arthur Lupton <contact@balupton.com>
+ * @copyright 2010-2011 Benjamin Arthur Lupton <contact@balupton.com>
+ * @license New BSD License <http://creativecommons.org/licenses/BSD/>
+ */
+
+/**
+ * History.js HTML4 Support
+ * Depends on the HTML5 Support
+ * @author Benjamin Arthur Lupton <contact@balupton.com>
+ * @copyright 2010-2011 Benjamin Arthur Lupton <contact@balupton.com>
+ * @license New BSD License <http://creativecommons.org/licenses/BSD/>
+ */
+
+/**
+ * History.js jQuery Adapter
+ * @author Benjamin Arthur Lupton <contact@balupton.com>
+ * @copyright 2010-2011 Benjamin Arthur Lupton <contact@balupton.com>
+ * @license New BSD License <http://creativecommons.org/licenses/BSD/>
+ */

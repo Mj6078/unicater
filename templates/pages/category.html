@@ -1,0 +1,384 @@
+---
+category:
+  products:
+    limit: {{theme_settings.product-count}}
+  shop_by_price: true
+---
+{{#partial "page"}}
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+<div class="container" style="max-width: 1530px; margin: 0 auto;">
+  {{#if theme_settings.category-breadcrumbs}}
+  <div class="product-listing-mobile-breadcrumbs">
+    {{> components/common/breadcrumbs breadcrumbs}}
+  </div>
+  {{/if}}
+  {{#if theme_settings.category-breadcrumbs}}
+  <div class="product-listing-desktop-breadcrumbs">
+    {{> components/common/breadcrumbs breadcrumbs}}
+  </div>
+  {{/if}}
+  {{#if category.subcategories}}
+  <div class="subcategory-carousel swiper-container">
+    <div class="swiper-wrapper">
+      {{#each category.subcategories}}
+      <div class="swiper-slide">
+        <div class="category-box2">
+          <div class="outer-box2">
+            <div class="image-link-container2">
+              <a href="{{url}}">
+              <img src='{{getImage image "thumbnail"}}' alt="{{name}}">
+              <div class="fontsize">
+                <p>{{name}}</p>
+              </div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="custom-next-arrow next-arrow">
+      <div class="custom-arrow"></div>
+    </div>
+    <div class="custom-prev-arrow prev-arrow">
+      <div class="custom-arrow"></div>
+    </div>
+  </div>
+  {{/if}}
+  <br>
+</div>
+<section class="product-listing section" data-list-name="{{lang 'data_tags.category' name=category.name}}">
+  <div class="container {{#unless theme_settings.collections-sidebar-hidden}}with-sidebar{{/unless}}">
+    {{{region name="category_below_header"}}}
+    {{{snippet 'categories'}}}
+    <header class="listing-header">
+      <h1 class="listing-title">{{category.name}}
+        <span class="vat-toggle">
+          <input type="checkbox" id="toggleVAT" onchange="toggleVAT()">
+          <label for="toggleVAT">Include VAT</label>
+        </span>
+      </h1>
+      {{#if category.image.data '===' null}}
+      {{#if category.description}}
+      <div class="listing-description">
+        {{{category.description}}}
+      </div>
+      {{/if}}
+      {{/if}}
+      {{> components/products/listing-utils sort=pagination.category.sort}}
+    </header>
+    <span class="vat-toggle-mobile">
+      <input type="checkbox" id="toggleVATMobile" onchange="toggleVAT()">
+      <label for="toggleVATMobile">Include VAT</label>
+    </span>
+    {{#unless theme_settings.collections-sidebar-hidden}}
+    <aside class="listing-sidebar" data-category-sidebar>
+      {{> components/category/sidebar}}
+      {{> components/products/listing-utils sort=pagination.category.sort}}
+    </aside>
+    {{/unless}}
+    <div class="product-listing-grid" data-category {{#if category.show_compare}}data-product-compare{{/if}} data-list-name="Category: {{category.name}}">
+      {{#if theme_settings.collections-view-mode '===' 'grid'}}
+      {{> components/category/product-listing}}
+      {{else}}
+      {{> components/category/product-listing-list}}
+      {{/if}}
+    </div>
+  </div>
+  {{{region name="category_below_content"}}}
+</section>
+{{/partial}}
+
+{{> layout/base}}
+<style>
+  .subcategory-carousel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .swiper-slide {
+    flex: 0 0 auto;
+    max-width: calc(20% - 10px);
+    padding-right: 10px;
+  }
+
+  .category-box2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    border: 0.1px solid #ccc;
+    border-radius: 15px;
+    background-color: #f6f8fb;
+    width: 100%;
+  }
+
+  .image-link-container2 {
+    display: flex;
+    align-items: center;
+  }
+
+  .image-link-container2 img {
+    max-width: 100px;
+    max-height: 70px;
+    margin-right: 10px;
+  }
+
+  .fontsize p {
+    font-size: x-small;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  @media (max-width: 1000px) {
+    .swiper-slide {
+      flex: 1 1 calc(50% - 10px);
+      max-width: calc(50% - 10px);
+    }
+
+    .category-box2 {
+      padding: 5px;
+      border: 0.1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    .image-link-container2 img {
+      max-width: 60px;
+      max-height: 40px;
+    }
+
+    .fontsize p {
+      font-size: xx-small;
+      max-width: 100%;
+    }
+  }
+
+  /* Custom navigation arrows */
+  .custom-next-arrow,
+  .custom-prev-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border-radius: 50%;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 10;
+  }
+
+  .custom-next-arrow:hover,
+  .custom-prev-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .custom-next-arrow {
+    right: 10px;
+  }
+
+  .custom-prev-arrow {
+    left: 10px;
+  }
+
+  .custom-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .next-arrow .custom-arrow::before,
+  .prev-arrow .custom-arrow::before {
+    content: '';
+    display: block;
+    width: 14px;
+    height: 14px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+  }
+
+  .next-arrow .custom-arrow::before {
+    transform: rotate(-45deg);
+    margin-left: 4px;
+  }
+
+  .prev-arrow .custom-arrow::before {
+    transform: rotate(135deg);
+    margin-right: 4px;
+  }
+
+  @media (max-width: 1000px) {
+    .custom-next-arrow,
+    .custom-prev-arrow {
+      display: none;
+    }
+  }
+
+  .vat-toggle {
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .vat-toggle input[type="checkbox"],
+  .vat-toggle-mobile input[type="checkbox"] {
+    display: none;
+  }
+
+  .vat-toggle label,
+  .vat-toggle-mobile label {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    transition: background-color 0.3s;
+  }
+
+  .vat-toggle label:hover,
+  .vat-toggle-mobile label:hover {
+    background-color: #eee;
+  }
+
+  .vat-toggle input[type="checkbox"]:checked+label,
+  .vat-toggle-mobile input[type="checkbox"]:checked+label {
+    background-color: #337ab7;
+    color: #fff;
+  }
+
+  .vat-toggle input[type="checkbox"]:checked+label::before,
+  .vat-toggle-mobile input[type="checkbox"]:checked+label::before {
+    content: "\2713";
+    font-size: 16px;
+    margin-right: 5px;
+  }
+
+  @media (min-width: 1000px) {
+    .vat-toggle-mobile {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .vat-toggle-mobile {
+      margin-left: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 5px 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f7f7f7;
+      transition: background-color 0.3s;
+      max-width: 150px;
+    }
+
+    .vat-toggle-mobile:hover {
+      background-color: #eee;
+    }
+
+    .vat-toggle-mobile input[type="checkbox"] {
+      display: none;
+    }
+
+    .vat-toggle-mobile label {
+      display: inline-block;
+      padding: 5px 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f7f7f7;
+      transition: background-color 0.3s;
+      width: 130px;
+    }
+
+    .vat-toggle {
+      display: none;
+    }
+  }
+</style>
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var swiper = new Swiper('.subcategory-carousel', {
+      slidesPerView: 'auto',
+      spaceBetween: 20,
+      loop: true,
+      navigation: {
+        nextEl: '.custom-next-arrow',
+        prevEl: '.custom-prev-arrow',
+      },
+    });
+
+    function updateSwiperParams() {
+      if (window.innerWidth <= 1000) {
+        swiper.params.slidesPerView = 2;
+        swiper.params.spaceBetween = 10;
+        swiper.params.loopedSlides = 2;
+        swiper.params.centeredSlides = true;
+        document.querySelector('.custom-next-arrow').style.display = 'none';
+        document.querySelector('.custom-prev-arrow').style.display = 'none';
+      } else {
+        swiper.params.slidesPerView = 'auto';
+        swiper.params.spaceBetween = 20;
+        swiper.params.loopedSlides = 5;
+        swiper.params.centeredSlides = false;
+        document.querySelector('.custom-next-arrow').style.display = 'flex';
+        document.querySelector('.custom-prev-arrow').style.display = 'flex';
+      }
+      swiper.update();
+    }
+
+    window.addEventListener('resize', updateSwiperParams);
+    updateSwiperParams();
+  });
+</script>
+<script>
+  function toggleVAT() {
+    var checkBox;
+    if (window.innerWidth <= 1000) {
+      checkBox = document.getElementById("toggleVATMobile");
+    } else {
+      checkBox = document.getElementById("toggleVAT");
+    }
+    var originalPriceElements = document.querySelectorAll(".new-price-value");
+    originalPriceElements.forEach(function(priceElement) {
+      var price = parseFloat(priceElement.getAttribute("data-original-price"));
+      if (checkBox.checked) {
+        var priceWithVAT = price * 1.20;
+        priceElement.textContent = formatPrice(priceWithVAT);
+      } else {
+        priceElement.textContent = formatPrice(price);
+      }
+    });
+  }
+
+  function formatPrice(price) {
+    return '£' + price.toFixed(2);
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var originalPriceElements = document.querySelectorAll(".new-price-value");
+    originalPriceElements.forEach(function(priceElement) {
+      var price = parseFloat(priceElement.textContent.replace(/[^\d.-]/g, ''));
+      priceElement.setAttribute("data-original-price", price);
+    });
+  });
+</script>
+

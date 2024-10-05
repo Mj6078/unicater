@@ -1,0 +1,309 @@
+.account-wrapper {
+  @extend %wrapper-padding;
+  max-width: $max-width;
+  padding-top: $section-padding;
+  padding-bottom: $section-padding;
+  margin: 0 auto;
+
+  &:after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+
+  .form-field {
+    @extend .form-field;
+  }
+
+  .form-field-email .form-field-control,
+  .form-field-password .form-field-control {
+    position: relative;
+    display: block;
+
+    &:after {
+      position: absolute;
+      right: rem-calc(17px);
+      bottom: rem-calc(20px);
+      display: block;
+      content: "";
+    }
+  }
+
+  .form-field-email .form-field-control {
+    &:after {
+      @include icon-email($color-meta);
+      width: 16px;
+      height: 12px;
+    }
+  }
+
+  .form-field-password .form-field-control {
+    &:after {
+      @include icon-password($color-meta);
+      width: 12px;
+      height: 16px;
+    }
+  }
+
+  .form-select-wrapper {
+    position: relative;
+    display: block;
+    height: rem-calc(55);
+    padding: rem-calc(19 17 18);
+    color: $color-input;
+    border: 0;
+    border-radius: $border-radius;
+    transition: border-color 0.2s $ease-out-quad;
+
+    select {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      appearance: none;
+    }
+  }
+}
+
+.account-login {
+  .account-button-secondary {
+    margin-left: rem-calc(20);
+  }
+}
+
+/*----------  Auth Modal  ----------*/
+
+.login-modal {
+  .modal-title {
+    margin: 0;
+    color: contrast($color-modal-background, 100%);
+    text-align: center;
+  }
+
+  .account-sub-heading {
+    @extend h3;
+    text-align: center;
+  }
+
+  .account-login-wrapper {
+    display: block;
+    padding: 0;
+
+    @include media($min: $breakpoint-s) {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+    }
+  }
+
+  .account-login,
+  .account-create {
+    display: block;
+    border-radius: $border-radius;
+  }
+
+  .account-login {
+    background-color: $color-background;
+
+    @include media($max: $breakpoint-s) {
+      margin-bottom: $double-gutter;
+    }
+  }
+
+  .account-button-secondary {
+    padding: 0 0 3px;
+    background-color: transparent;
+    color: $color-button-secondary;
+    border-radius: 0;
+    border-bottom: 1px solid;
+  }
+
+  .account-create {
+    color: contrast($color-modal-background, 100%);
+    border: 2px solid rgba($color-background, 0.10);
+    background: transparent;
+
+    .account-sub-heading { color: contrast($color-modal-background, 100%); }
+
+    .button {
+      @extend .button-secondary;
+      @extend %center-x;
+      color: contrast($color-modal-background, 100%);
+      border-color: contrast($color-modal-background, 100%);
+    }
+  }
+
+  .account-create-facts li:before {
+    @include icon-check-mark(contrast($color-modal-background, 100%));
+  }
+
+  .account-page-forgot .account-body {
+    position: relative;
+    max-width: $modal-width-narrow;
+    margin: 0 auto;
+    padding: 5vw;
+    background-color: $color-background;
+    border-radius: $border-radius;
+
+    .account-sub-heading { display: none; }
+  }
+}
+
+// Modal revealer panels
+.login-register-block,
+.forgot-password-block {
+  display: none;
+
+  &.animating,
+  &.visible {
+    display: block;
+  }
+
+  // initial state for enter transition
+  &.animating-in {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  // initial state for leave transition
+  &.animating-out {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  // final states for both in and out
+  &.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/*----------  Login  ----------*/
+
+.account-login-wrapper { max-width: none; }
+
+.account-login,
+.account-create {
+  padding: $double-gutter;
+
+  @include media($min: $breakpoint-s) {
+    padding: 2vw;
+  }
+
+  @include media($min: $breakpoint-m) {
+    padding: 5vw;
+  }
+}
+
+.auth-sub-heading {
+  @extend h3;
+  margin-top: 0;
+  text-align: center;
+}
+
+.auth-login-form {
+  .button,
+  .auth-button-alt {
+    display: inline-block;
+    width: 47%;
+  }
+
+  .auth-button-alt {
+    text-align: right;
+    text-decoration: underline;
+  }
+}
+
+.account-create-facts {
+  padding-left: 0;
+  font-family: $font-secondary;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  list-style: none;
+
+  li {
+    margin-bottom: 0.5em;
+
+    &:before {
+      @include icon-check-mark($color-body);
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      margin-right: rem-calc(15px);
+      content: "";
+    }
+  }
+}
+
+/*----------  Forgot Password  ----------*/
+
+.auth-forgot-password-message { text-align: center; }
+
+.auth-forgot-password {
+  .form { @include layout-group; }
+
+  .form-field,
+  .form-actions {
+    @include layout-group-item;
+    vertical-align: bottom;
+  }
+
+  .form-actions {
+    width: 33%;
+    text-align: right;
+  }
+}
+
+/*----------  Nav  ----------*/
+
+.account-nav-list {
+  text-transform: uppercase;
+  border: 0;
+
+  @if $font-primary == "Roboto Slab" {
+    font-family: $font-secondary;
+  }
+}
+
+.account-nav-item {
+  color: inherit;
+  border: 0;
+
+  &.is-active {
+    border: 0;
+    color: $color-accent;
+  }
+}
+
+.account-nav-link {
+  padding: rem-calc(10) 0;
+}
+
+/*----------  Products  ----------*/
+
+.account-wishlist-items,
+.account-recently-viewed {
+  display: grid;
+
+  @include media($min: $breakpoint-xs) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2%;
+    align-items: start;
+  }
+
+  @include media($min: $breakpoint-m) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .account-product-item {
+    @extend .product-grid-item;
+    margin-bottom: 3rem;
+  }
+}

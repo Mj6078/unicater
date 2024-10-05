@@ -1,0 +1,65 @@
+.brand-items-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  font-size: 0;
+
+  @include media($min: $breakpoint-s) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.brand-item {
+  display: inline-block;
+  padding: $gutter;
+  font-size: $font-size;
+  text-align: center;
+  vertical-align: bottom;
+
+  a {
+    position: relative;
+    display: block;
+    padding: 50% 0;
+    color: inherit;
+    border: 1px solid $color-border;
+    transition: all 0.6s ease-out;
+
+    &:hover {
+      background-color: $color-bold;
+      color: contrast($color-bold, 100%);
+      transition: all 0.3s ease-out
+    }
+
+    .brand-name {
+      position: absolute;
+      max-width: 75%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.brand-item-image-container {
+  overflow: hidden;
+
+  .brand-name {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    background-color: rgba($color-background, 0.75);
+    transition: background-color 0.6s ease-out;
+  }
+
+  .brand-item:hover & {
+    .brand-name {
+      background-color: rgba($color-bold, 0.75);
+    }
+  }
+}
+
+.brand-item-title {
+  font-family: $font-secondary;
+  text-transform: uppercase;
+  margin: 0;
+}

@@ -1,0 +1,118 @@
+/*----------  Home Products  ----------*/
+
+.products-new {
+  background-color: $color-background-secondary;
+
+  .container {
+    display: grid;
+
+    @include media($min: $breakpoint-xs) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 2%;
+      align-items: start;
+    }
+
+    @include media($min: $breakpoint-s) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .product-grid-item {
+    margin-bottom: 2.5rem;
+
+    @include media($min: $breakpoint-xs) {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.products-featured {
+  padding-bottom: 0;
+}
+
+/*----------  Brand List  ----------*/
+
+
+.brand-list {
+  display: none;
+  padding-bottom: 40px;
+  background-color: $color-topbar-background;
+  text-align: center;
+
+  .brand-link {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 20px 39px;
+    transition: opacity 0.3s ease;
+
+    @include media($min: $breakpoint-s) {
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .brand-logo {
+    max-height: 40px;
+  }
+}
+
+
+/*----------  Blog Recent Posts  ----------*/
+
+.blog-latest-posts {
+  background-color: $color-background-secondary;
+
+  .recent-posts {
+    display: grid;
+
+    @include media($min: $breakpoint-s) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 2%;
+      align-items: start;
+    }
+  }
+
+  .post {
+    margin-bottom: 3rem;
+
+    @include media($min: $breakpoint-s) {
+      margin-bottom: 0;
+    }
+  }
+
+  .post-title {
+    margin-bottom: 0;
+  }
+
+  .post-read-more {
+    @extend %link-text-treatment;
+    display: inline-block;
+    margin-top: 20px;
+    color: $color-accent;
+  }
+}
+
+
+/*----------  Newsletter  ----------*/
+
+.default {
+  .newsletter-signup {
+    background-color: $color-background;
+  }
+}
+@font-face {
+  font-family: 'Metropolis';
+  src: url('path_to_fonts/Metropolis-Regular.woff2') format('woff2'),
+       url('path_to_fonts/Metropolis-Regular.woff') format('woff'),
+       url('path_to_fonts/Metropolis-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Metropolis', sans-serif;
+}

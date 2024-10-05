@@ -1,0 +1,204 @@
+{{#if product_results.products}}
+  <ul class="custom-quickSearchResults" data-list-name="Quick Search Results">
+    <span class="close-icon" onclick="closeQuickSearchResults()">✖</span>
+    {{#each product_results.products}}
+    <li class="custom-product">
+      <article class="custom-product-item" data-product-title="{{name}}" data-product-id="{{id}}"
+        data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}"
+        data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+        data-product-brand="{{brand.name}}"
+        data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"
+        data-product-variant="single-product-option">
+        <div class="custom-product-item-content">
+          <figure class="custom-product-image">
+              <a href="{{url}}">
+                  <img
+                    {{#if image}}
+                      src="{{getImageSrcset image 1x=(default fallback_size '40w')}}"
+                      alt="{{image.alt}}"
+                      title="{{image.alt}}"
+                      data-sizes="auto"
+                      {{#unless lazyload '==' 'disabled'}}data-{{/unless}}srcset="{{getImageSrcset image use_default_sizes=true }}"
+                    {{else if default_image}}
+                      src="{{cdn default_image}}"
+                    {{/if}}
+                    class="{{#unless lazyload '==' 'disabled'}}lazyload{{/unless}}{{#if class}} {{class}}{{/if}}"
+                    {{#if lazyload '==' 'lazyload'}}
+                      loading="lazy"
+                    {{/if}}
+                    style="object-fit: {{#if fit '==' 'image-contain'}}contain{{else}}cover{{/if}}; width: 40px; height: 40px;"
+                    {{otherAttributes}}
+                  />                    
+              </a>
+          </figure>
+          <div class="custom-product-item-details">
+            <h5 class="custom-product-item-title">
+              <a href="{{url}}" alt="{{name}}">{{name}}</a>
+            </h5>
+          </div>
+        </div>
+      </article>
+    </li>
+    {{/each}}
+  </ul>
+{{/if}}
+
+<style>
+.quickSearchResults {
+  position: absolute;
+  z-index: 1000;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 0 0 5px 5px;
+  max-height: 300px;
+  overflow-y: auto;
+  justify-content: center;
+  max-width: 60%;
+  padding: 0;
+  margin: 0;
+  width: 100%; /* Ensure it matches the width of the search bar */
+  left: 50%; /* Position at 50% from the left */
+  transform: translateX(-50%); /* Center it horizontally */
+  top: calc(100% + 5px); /* Positioning just below the search bar */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.close-icon:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.search-bar {
+  position: relative; /* Ensure the search bar has relative positioning */
+  width: 750px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+/* Media queries for responsive width adjustments */
+@media only screen and (min-width: 1401px) and (max-width: 1530px) {
+  .search-bar {
+    width: 800px;
+  }
+}
+
+@media only screen and (min-width: 1230px) and (max-width: 1400px) {
+  .search-bar {
+    width: 700px;
+  }
+}
+
+@media only screen and (min-width: 1149px) and (max-width: 1230px) {
+  .search-bar {
+    width: 670px;
+  }
+}
+
+@media (max-width: 1149px) {
+  .search-bar {
+    width: 600px;
+  }
+}
+
+.search-bar input {
+  width: 100%;
+  border: none;
+  padding: 10px;
+  border-radius: 25px 0 0 25px;
+  outline: none;
+  background-color: white;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background-color: white;
+  border: none;
+  border-radius: 0 25px 25px 0;
+  cursor: pointer;
+  color: black;
+}
+
+.search-bar button:hover .search-icon {
+  fill: purple;
+}
+
+.custom-product {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.custom-product:last-child {
+  border-bottom: none;
+}
+
+.custom-product-item {
+  padding: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.custom-product-item-content {
+  display: flex;
+  align-items: center;
+}
+
+.custom-product-image {
+  margin-right: 10px;
+}
+
+.custom-product-item-details {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.custom-product-item-title {
+  margin: 0;
+  font-size: 14px;
+  color: #333333;
+}
+
+.custom-product-item-title a {
+  text-decoration: none;
+  color: #333333;
+}
+
+.custom-product-item-title a:hover {
+  text-decoration: none;
+}
+
+.custom-quickSearchMessage {
+  padding: 10px;
+  text-align: center;
+  color: #333333;
+  font-family: 'Inter', sans-serif;
+}
+
+</style>
+
+<script>
+function closeQuickSearchResults() {
+  document.querySelector('.custom-quickSearchResults').style.display = 'none';
+}
+</script>

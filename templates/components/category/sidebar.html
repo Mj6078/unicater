@@ -1,0 +1,316 @@
+<!-- Wrapper for category navigation -->
+<div class="responsive-category-nav">
+  {{#if category.subcategories}}
+    <div class="category-nav facet-list">
+      <h4 class="facet-list-title">{{lang 'category.sub_categories'}}</h4>
+      <ul class="category-nav-list">
+        {{#each category.subcategories}}
+          <li class="facet-item">
+            <a href="{{url}}">{{name}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+</div>
+{{#if category.subcategories}}
+<!-- Dropdown Button for screens below 1000px -->
+<button id="dropdown-toggle" class="dropdown-toggle">Categories</button>
+
+<!-- Dropdown Menu for screens below 1000px -->
+<div id="dropdown-menu" class="dropdown-menu">
+  <ul class="category-nav-list">
+    {{#each category.subcategories}}
+      <li class="facet-item">
+        <a href="{{url}}">{{name}}</a>
+      </li>
+    {{/each}}
+  </ul>
+</div>
+{{/if}}
+
+{{#if category.faceted_search_enabled}}
+  <span class="link faceted-search-toggle" data-faceted-search-toggle>
+    {{lang 'faceted_search.toggle'}}
+    <span class="facet-list-toggle">
+      <svg class="icon icon-plus">
+        <use xlink:href="#icon-plus" />
+      </svg>
+      <svg class="icon icon-minus">
+        <use xlink:href="#icon-minus" />
+      </svg>
+    </span>
+  </span>
+  <div class="faceted-search" data-faceted-search>
+    {{#each category.facets}}
+      {{#if visible}}
+        {{#if items}}
+          <div class="facet-list {{display}}" data-facet-filter>
+            <h4 class="facet-list-title {{#unless start_collapsed}}is-open{{/unless}}" data-facet-toggle>
+              {{title}}
+              <span class="facet-list-toggle"></span>
+            </h4>
+            {{{dynamicComponent 'components/faceted-search/facets'}}}
+            {{#if remove_url}}
+              <a class="link facet-remove" href="{{remove_url}}" data-faceted-search-facet data-facet-remove>
+                {{lang 'faceted_search.clear'}}
+              </a>
+            {{/if}}
+          </div>
+        {{/if}}
+        {{#compare facet 'price'}}
+          <div class="facet-list {{display}}" data-facet-filter>
+            <h4 class="facet-list-title {{#unless start_collapsed}}is-open{{/unless}}" data-facet-toggle>
+              {{title}}
+              <span class="facet-list-toggle"></span>
+            </h4>
+            {{{dynamicComponent 'components/faceted-search/facets'}}}
+            {{#if remove_url}}
+              <a class="link facet-remove" href="{{remove_url}}" data-faceted-search-facet data-facet-remove>
+                {{lang 'faceted_search.clear'}}
+              </a>
+            {{/if}}
+          </div>
+        {{/compare}}
+      {{/if}}
+    {{/each}}
+  </div>
+{{else}}
+  {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url }}
+  {{#if theme_settings.category-shop-by-brands}}
+    {{> components/category/shop-by-brand category_url=category.url}}
+  {{/if}}
+{{/if}}
+<!-- HTML for Eco Properties Filter Section -->
+<div class="eco-properties">
+  <label class="filter-option">
+    <input type="checkbox" id="filter-reusable" /> Reusable
+    <img src="https://thumbs.dreamstime.com/z/percent-recycled-reusable-product-icon-vector-graphic-design-logo-website-social-media-mobile-app-ui-illustration-percent-264862796.jpg" alt="Reusable Icon" class="filter-icon" />
+  </label>
+  <label class="filter-option">
+    <input type="checkbox" id="filter-recycle" /> Recycle
+    <img src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/icons8-recycle-24.png?t=1718392046" alt="Recycle Icon" class="filter-icon" />
+  </label>
+</div>
+<style>
+/* Hide the dropdown menu by default */
+#dropdown-menu {
+  display: none;
+  transition: max-height 0.3s ease-out; /* Smooth transition for the dropdown */
+  overflow: hidden;
+  max-height: 0; /* Start with no height */
+}
+
+/* Default state: Hide everything */
+.responsive-category-nav,
+#dropdown-toggle,
+#dropdown-menu {
+  display: none;
+}
+
+/* For screens above 1000px: show the category navigation directly */
+@media (min-width: 1000px) {
+  .responsive-category-nav {
+    display: block;
+  }
+}
+
+/* For screens below 1000px: show the toggle button and use the dropdown menu */
+@media (max-width: 999px) {
+  #dropdown-toggle {
+    display: block;
+  }
+  #dropdown-menu.expanded {
+    display: block;
+    max-height: 500px; /* Adjust based on the content's height */
+  }
+}
+
+/* Dropdown menu styling */
+#dropdown-menu .category-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#dropdown-menu .category-nav-list .facet-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+#dropdown-menu .category-nav-list .facet-item a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+}
+
+#dropdown-toggle {
+  background-color: #ffffff;
+  color: rgb(121, 121, 121);
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+#dropdown-toggle:focus {
+  outline: none;
+}
+
+/* SCSS for Eco Properties Filter Section */
+.eco-properties {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #ffffff;
+
+  .filter-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #e0f7fa;
+    border-radius: 4px;
+
+    &:nth-child(2) {
+      background-color: #e8f5e9;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    .filter-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var toggleButton = document.getElementById("dropdown-toggle");
+  var dropdownMenu = document.getElementById("dropdown-menu");
+
+  toggleButton.addEventListener("click", function() {
+    // Toggle the expanded state of the dropdown menu
+    if (dropdownMenu.classList.contains("expanded")) {
+      dropdownMenu.classList.remove("expanded");
+      dropdownMenu.style.maxHeight = "0"; // Collapse the menu
+    } else {
+      dropdownMenu.classList.add("expanded");
+      dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + "px"; // Expand to fit content
+    }
+  });
+
+  // Optional: Close the dropdown if clicked outside
+  window.addEventListener("click", function(event) {
+    if (!event.target.matches('#dropdown-toggle')) {
+      if (dropdownMenu.classList.contains("expanded")) {
+        dropdownMenu.classList.remove("expanded");
+        dropdownMenu.style.maxHeight = "0";
+      }
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const reusableCheckbox = document.getElementById('filter-reusable');
+  const recycleCheckbox = document.getElementById('filter-recycle');
+  const productCards = document.querySelectorAll('.product-grid-item');
+  const sortForm = document.getElementById('sort-form');
+  const sortSelect = document.getElementById('sort');
+
+  // Function to reset the filter states
+  function resetFilterState() {
+    reusableCheckbox.checked = false;
+    recycleCheckbox.checked = false;
+  }
+
+  // Function to filter products
+  function filterProducts() {
+    const showReusable = reusableCheckbox.checked;
+    const showRecycle = recycleCheckbox.checked;
+
+    productCards.forEach(card => {
+      const hasReusable = card.querySelector('.recycle-icon img[src*="reusable"]') !== null;
+      const hasRecycle = card.querySelector('.recycle-icon img[src*="recycle"]') !== null;
+
+      // When both filters are selected, show products that match either filter
+      if (showReusable && showRecycle) {
+        if (hasReusable || hasRecycle) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      }
+      // When only the reusable filter is selected
+      else if (showReusable) {
+        if (hasReusable) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      }
+      // When only the recycle filter is selected
+      else if (showRecycle) {
+        if (hasRecycle && !hasReusable) { // Ensure only recycle is shown
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      }
+      // When no filter is selected, show all products
+      else {
+        card.style.display = 'block';
+      }
+    });
+  }
+
+  reusableCheckbox.addEventListener('change', filterProducts);
+  recycleCheckbox.addEventListener('change', filterProducts);
+
+  // Update hidden inputs and submit the form when sorting is applied
+  sortSelect.addEventListener('change', function() {
+    resetFilterState();
+    sortForm.submit();
+  });
+
+  // Submit the sort form asynchronously
+  sortForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(sortForm);
+    const queryString = new URLSearchParams(formData).toString();
+    const url = `${window.location.pathname}?${queryString}`;
+
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
+    .then(response => response.text())
+    .then(data => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data, 'text/html');
+      const newProductGrid = doc.querySelector('.product-grid');
+      document.querySelector('.product-grid').innerHTML = newProductGrid.innerHTML;
+
+      // Reset filters after sorting
+      resetFilterState();
+
+      // Reapply filters if any checkbox is checked
+      filterProducts();
+    })
+    .catch(error => console.error('Error:', error));
+  });
+});
+
+
+</script>
+  

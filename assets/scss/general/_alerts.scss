@@ -1,0 +1,74 @@
+.alert {
+  position: relative;
+  padding: rem-calc(16) rem-calc(32) rem-calc(16) rem-calc(16);
+  font-size: rem-calc(14);
+  color: $color-alert-text;
+  text-align: center;
+  transition: opacity 0.3s $ease-out-quad;
+
+  &.dismissed { opacity: 0; }
+
+  &.hidden,
+  &.alert-dynamic { display: none; }
+
+  &.animating,
+  &.visible {
+    display: block;
+  }
+
+  // initial state for enter transition
+  &.animating-in,
+  &.animating-out {
+    opacity: 0;
+    transition: opacity 0.3s $ease-out-quad;
+  }
+
+  // final states for both in and out
+  &.visible {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .alert-dismiss {
+    position: absolute;
+    top: rem-calc(24);
+    right: rem-calc(16);
+    width: rem-calc(12);
+    height: rem-calc(12);
+    line-height: 0;
+    color: transparent;
+    cursor: pointer;
+
+    &:hover { opacity: 1; }
+  }
+
+  &.alert-success,
+  &.success {
+    background-color: $color-success;
+
+    .alert-dismiss { @include icon-close(darken($color-success, 20%)); }
+  }
+
+  &.alert-error,
+  &.error {
+    background-color: $color-error;
+
+    .alert-dismiss { @include icon-close(darken($color-error, 30%)); }
+  }
+
+  &.alert-info,
+  &.neutral {
+    background-color: $color-info;
+
+    .alert-dismiss { @include icon-close(darken($color-info, 30%)); }
+  }
+
+  a:not(.alert-dismiss) {
+    color: $color-alert-text;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

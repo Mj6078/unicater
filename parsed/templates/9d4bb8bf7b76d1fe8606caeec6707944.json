@@ -1,0 +1,3 @@
+{
+  "components/common/banners": "{{#if banners}}\n  <div class=\"banners {{class}}\">\n    {{#each (limit banners 1)}}\n      <div\n        class=\"banner rte\"\n        data-event-type=\"promotion\"\n        data-entity-id=\"{{this.id}}\"\n        data-name=\"{{this.banner-name}}\"\n        data-position=\"{{this.location}}\"\n      >\n        <div data-event-type=\"promotion-click\">\n          {{{this.content}}}\n        </div>\n    </div>\n    {{/each}}\n  </div>\n{{/if}}\n"
+}

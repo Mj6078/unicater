@@ -1,0 +1,143 @@
+<div class="table-container">
+<div class="new-container roll">
+  <table class="new-product-details-table">
+    <tbody>
+      {{#if product.warranty}}
+      <tr class="new-product-row">
+        <td class="new-product-details-name">{{lang 'product.warranty'}}:</td>
+        <td class="new-product-details-value">{{product.warranty}}</td>
+      </tr>
+      {{/if}}
+
+      {{#if product.sku}}
+      <tr class="new-product-row">
+        <td class="new-product-details-name">{{lang 'product.sku'}}:</td>
+        <td class="new-product-details-value">{{product.sku}}</td>
+      </tr>
+      {{/if}}
+
+      {{#if product.condition}}
+      <tr class="new-product-row">
+        <td class="new-product-details-name">{{lang 'product.condition'}}:</td>
+        <td class="new-product-details-value">{{product.condition}}</td>
+      </tr>
+      {{/if}}
+
+      {{#if product.release_date}}
+      <tr class="new-product-row">
+        <td class="new-product-details-name">{{lang 'product.release_date'}}:</td>
+        <td class="new-product-details-value">{{product.release_date}}</td>
+      </tr>
+      {{/if}}
+
+      {{#if product.availability}}
+      <tr class="new-product-row">
+        <td class="new-product-details-name">{{lang 'product.availability'}}:</td>
+        <td class="new-product-details-value">{{product.availability}}</td>
+      </tr>
+      {{/if}}
+
+      {{#if theme_settings.product-dimensions}}
+      {{#if product.weight}}
+      <tr class="new-product-row">
+        <td class="new-product-details-name">{{lang 'product.weight'}}:</td>
+        <td class="new-product-details-value" data-product-weight>{{product.weight}}</td>
+      </tr>
+      {{/if}}
+
+      {{#if product.height}}
+      <tr class="new-product-row">
+        <td class="new-product-details-name">{{lang 'product.height'}}:</td>
+        <td class="new-product-details-value">{{product.height}}</td>
+      </tr>
+      {{/if}}
+
+      {{#if product.width}}
+      <tr class="new-product-row">
+        <td class="new-product-details-name">{{lang 'product.width'}}:</td>
+        <td class="new-product-details-value">{{product.width}}</td>
+      </tr>
+      {{/if}}
+
+      {{#if product.depth}}
+      <tr class="new-product-row">
+        <td class="new-product-details-name">{{lang 'product.depth'}}:</td>
+        <td class="new-product-details-value">{{product.depth}}</td>
+      </tr>
+      {{/if}}
+      {{/if}}
+
+      {{#if product.gift_wrapping_available}}
+      <tr class="new-product-row">
+        <td class="new-product-details-name">{{lang 'product.gift_wrapping'}}:</td>
+        <td class="new-product-details-value">{{lang 'product.gift_wrapping_available'}}</td>
+      </tr>
+      {{/if}}
+
+      {{#if product.shipping}}
+      {{#if product.shipping.calculated}}
+      <tr class="new-product-row">
+        <td class="new-product-details-name">{{lang 'product.shipping'}}:</td>
+        <td class="new-product-details-value">{{lang 'product.shipping_calculated'}}</td>
+      </tr>
+      {{else}}
+      {{#if (equal product.shipping.price 0)}}
+      <tr class="new-product-row">
+        <td class="new-product-details-name">{{lang 'product.shipping'}}:</td>
+        <td class="new-product-details-value">{{lang 'product.shipping_free'}}</td>
+      </tr>
+      {{else}}
+      <tr class="new-product-row">
+        <td class="new-product-details-name">{{lang 'product.shipping'}}:</td>
+        <td class="new-product-details-value">{{lang 'product.shipping_fixed' amount=product.shipping.price.formatted}}</td>
+      </tr>
+      {{/if}}
+      {{/if}}
+      {{/if}}
+
+      {{#each product.custom_fields}}
+      <tr class="new-product-row">
+        <td class="new-product-details-name">{{name}}:</td>
+        <td class="new-product-details-value">{{value}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+</div>
+
+
+
+<style>
+.table-container {
+  width: 750PX;
+  display: flex;
+  justify-content: center; /* Center the container horizontally */
+}
+
+.new-container {
+  width: 100%; /* Adjust width as needed */
+}
+
+.new-product-details-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.new-product-details-name {
+  font-weight: bold;
+  color: #000;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.new-product-details-value {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.new-product-row:nth-child(even) {
+  background-color: #f2f2f2; /* Even row color */
+}
+
+</style>

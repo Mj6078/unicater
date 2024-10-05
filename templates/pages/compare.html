@@ -1,0 +1,180 @@
+---
+brands: true
+---
+
+{{#partial "page"}}
+  <header class="compare-header page-header">
+    {{> components/common/breadcrumbs breadcrumbs}}
+    <h1 class="compare-title page-title">
+      {{lang 'compare.title' num=comparisons.length}}
+    </h1>
+  </header>
+
+  <div class="container">
+    <div class="compare-content">
+
+      <table class="compare-table">
+
+        <tr class="compare-row compare-main-row">
+          <th class="header-column compare-empty-cell"></th>
+          {{#each comparisons}}
+            <td class="compare-table-cell">
+              <figure class="product-item-thumbnail">
+                <a
+                  class="{{../theme_settings.product_grid_image_ratio}}"
+                  href="{{url}}"
+                  title="{{name}}"
+                >
+                  {{> components/common/responsive-image
+                    image=image
+                    class="product-item-image"
+                    fit=../theme_settings.product_grid_image_cropping
+                    lazyload=../theme_settings.lazyload_mode
+                    fallback_size=../theme_settings.thumb
+                    default_image=../theme_settings.default_image
+                  }}
+                </a>
+              </figure>
+
+              {{#if brand.name}}
+                <div class="product-item-brand">
+                  {{brand.name}}
+                </div>
+              {{/if}}
+
+
+              <h3 class="product-item-title">
+                <a href="{{url}}" title="{{name}}">
+                  {{name}}
+                </a>
+              </h3>
+
+              <div class="product-item-price">
+                {{> core/products/price
+                  price=price
+                  show_tax_labels=true
+                  show_sale_badges=false
+                  price_range_display=../theme_settings.price_range_display
+                  retail_price_label=../theme_settings.retail-price-label
+                  non_sale_price_label=../theme_settings.non-sale-price-label
+                  sale_price_label=../theme_settings.sale-price-label
+                  price_label=../theme_settings.price-label
+                }}
+              </div>
+            </td>
+          {{/each}}
+        </tr>
+
+        <tr class="compare-row compare-quickshop-row">
+          <th class="header-column compare-empty-cell"></th>
+          {{#each comparisons}}
+            <td class="compare-table-cell">
+              {{#if ../theme_settings.quick-shop}}
+                <a
+                  href="{{url}}"
+                  class="button button-secondary"
+                  data-quick-shop
+                  data-product-id="{{id}}"
+                >
+                  {{lang 'product.quick_view'}}
+                </a>
+              {{/if}}
+              {{#if ../comparisons.length ">" 2}}
+                <a href="{{remove_url}}" class="link compare-remove">
+                  {{lang 'compare.remove'}}
+                </a>
+              {{/if}}
+            </td>
+          {{/each}}
+        </tr>
+
+        <tr class="compare-row compare-rating-row">
+          <th class="header-column compare-table-heading">
+            {{lang 'compare.rating'}}:
+          </th>
+          {{#each comparisons}}
+            <td class="compare-table-cell">
+              {{#if rating}}
+                <div class="product-item-rating">
+                  <span class="rating-title">
+                    {{rating}} {{lang 'product.stars'}}
+                  </span>
+                  {{> components/products/ratings rating=rating}}
+                </div>
+              {{else}}
+                <div class="compare-no-rating">
+                  {{lang 'compare.no_rating'}}
+                </div>
+              {{/if}}
+            </td>
+          {{/each}}
+        </tr>
+
+        <tr class="compare-row compare-description-row">
+          <th class="header-column compare-table-heading">
+            {{lang 'compare.description'}}:
+          </th>
+          {{#each comparisons}}
+            <td class="compare-table-cell">
+              {{{summary}}}{{#if summary.length ">=" 120}}&hellip;{{/if}}
+            </td>
+          {{/each}}
+        </tr>
+
+        <tr class="compare-row compare-action-row">
+          <th class="header-column compare-empty-cell"></th>
+          {{#each comparisons}}
+            <td class="compare-table-cell">
+              {{#unless hide_add_to_cart}}
+                {{#if has_options}}
+                  <a
+                    href="{{url}}"
+                    class="button button-secondary"
+                    data-product-id="{{id}}"
+                  >
+                    {{lang 'product.choose_options'}}
+                  </a>
+                {{else}}
+                  {{#if out_of_stock_message}}
+                    <a
+                      href="{{url}}"
+                      class="button button-disabled"
+                      data-product-id="{{id}}"
+                    >
+                      {{out_of_stock_message}}
+                    </a>
+                  {{else}}
+                    <a
+                      href="{{add_to_cart_url}}"
+                      data-product-id="{{id}}"
+                      data-product-title="{{name}}"
+                      class="button button-primary add-to-cart button-progress"
+                      data-progress-text="{{ lang 'product.add_to_cart_progress' }}"
+                      data-event-type="product-click"
+                    >
+                      {{!> components/common/spinner}}
+                      <span class="button-text">
+                        {{#if pre_order}}
+                          {{lang 'product.pre_order'}}
+                        {{else}}
+                          {{#if ../../../../../theme_settings.cart_icon '==' 'bag'}}
+                            {{lang 'product.add_to_bag'}}
+                          {{else}}
+                            {{lang 'product.add_to_cart'}}
+                          {{/if}}
+                        {{/if}}
+                      </span>
+                    </a>
+                  {{/if}}
+                {{/if}}
+              {{/unless}}
+            </td>
+          {{/each}}
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+{{/partial}}
+{{> layout/base}}

@@ -1,0 +1,18 @@
+.cart-options-modal {
+  max-width: 600px;
+  padding: 5vw;
+  opacity: 0;
+
+  .modal-wrapper.loaded & {
+    opacity: 1;
+  }
+
+  .reconfigure-errors {
+    display: none;
+  }
+
+  .icon-close {
+    width: 15px;
+    height: 15px;
+  }
+}

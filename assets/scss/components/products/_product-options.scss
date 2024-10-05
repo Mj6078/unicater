@@ -1,0 +1,295 @@
+
+.product-options-container {
+  margin: $double-gutter 0 0;
+
+  .form-field {
+    margin-bottom: 22px;
+
+    &.#{$all-text-inputs} {
+      width: 100%;
+    }
+
+    input[type="number"] { max-width: 25%; }
+
+    .input-select { width: 100%; }
+
+    textarea {
+      height: auto;
+      resize: vertical;
+    }
+  }
+
+  .form-select-wrapper {
+    display: inline-block;
+  }
+
+  .form-field-title {
+    display: block;
+    margin-bottom: rem-calc(10);
+    margin-left: 0;
+  }
+
+  .required {
+    .form-label-text:after {
+      content: "*";
+    }
+  }
+}
+
+.option-unavailable {
+  opacity: 0.5;
+}
+
+.form-field-title {
+  display: block;
+  margin-bottom: 10px;
+  margin-left: 0;
+
+  .form-field-swatch & {
+    float: left;
+  }
+}
+
+/* file */
+.form-file-size,
+.form-file-types {
+  display: block;
+  margin: rem-calc(5) 0;
+  font-size: rem-calc(12);
+}
+
+
+/* form feild rectangle */
+
+.form-field-rectangle {
+  @extend %clearfix;
+
+  .rectangle {
+    position: relative;
+    display: inline-block;
+    float: left;
+    margin: 0 10px 10px 0;
+  }
+
+  .rectangle-text {
+    display: block;
+    min-width: 45px;
+    padding: 14px;
+    font-size: 13px;
+    font-family: $font-secondary;
+    line-height: 1;
+    text-align: center;
+    background-color: $color-background;
+    border: 2px solid $color-border;
+    border-radius: 23px;
+    transition: all 0.3s ease;
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+
+    &:checked + .rectangle-text {
+      color: #fff;
+      background-color: $color-body;
+      border-color: $color-body;
+    }
+  }
+}
+
+/* colour swatch */
+
+.swatch-value {
+  font-style: normal;
+  font-weight: normal;
+  color: lighten($color-body, 20%);
+}
+
+.form-field-swatch {
+  .form-field-control {
+    @extend %clearfix;
+    clear: left;
+  }
+
+  .form-label-text {
+    @extend .show-for-sr;
+  }
+
+  .swatch-wrap {
+    position: relative;
+    display: block;
+    float: left;
+    margin: 0 10px 10px 0;
+
+    //ensure hovered swatches don't extend offscreen on smaller devices
+    @include media($max: $breakpoint-s) {
+      &:first-child .swatch-pattern-expanded {
+        left: -10px;
+        transform: translateX(0);
+      }
+
+      &:last-child .swatch-pattern-expanded {
+        left: auto;
+        transform: translateX(0);
+      }
+    }
+  }
+
+  // The block the swatch sits within
+  .swatch {
+    position: relative;
+    display: block;
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+    border: 1px solid transparent;
+    border-radius: 50%;
+  }
+
+  .swatch-color {
+    @extend %fill-parent;
+    background-color: #eee;
+    background-size: cover;
+
+    &.secondary {
+      left: 50%;
+    }
+
+    &.tertiary {
+      top: 50%;
+      left: 50%;
+    }
+  }
+
+  .swatch-radio {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+
+    // Selected Swatch Items
+    &:checked + .swatch {
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+        width: 13px;
+        height: 10px;
+        background-image: url("data:image/svg+xml,%3Csvg width='14' height='10' viewBox='0 0 14 10' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3E6269C699-FBB7-4109-B1F3-15F8609CEA35%3C/title%3E%3Cpath d='M5.72 9.6325l-.3995.3995L.082 4.7936l2.1064-2.1063L5.62 6.1187 11.7704-.032l2.1064 2.1064L6.0192 9.932 5.72 9.6324z' fill='%23fff' fill-rule='evenodd'/%3E%3C/svg%3E");
+        content: "";
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+  }
+}
+
+.swatch-pattern-expanded {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  z-index: 2;
+  padding: 3px;
+  border: 1px solid $color-border;
+  background: $color-background;
+  transform: translateX(-50%);
+
+  .swatch-pattern-image {
+    display: block;
+    width: 100px;
+    height: 100px;
+    max-width: none;
+    background-size: cover;
+  }
+}
+
+.swatch-wrap:hover .swatch-pattern-expanded {
+  display: block;
+}
+
+/* date input */
+
+.date-select-group {
+  @extend %clearfix;
+
+  .form-select-wrapper { float: left; }
+
+  .month { width: 31%; }
+
+  .year { width: 31%; }
+
+  .day {
+    width: 31%;
+    margin-right: 3%;
+    margin-left: 3%;
+  }
+}
+
+/* product-picker input type  */
+
+.product-picklist-item {
+  position: relative;
+  display: block;
+  margin-bottom: -1px;
+}
+
+.product-picklist-radio {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  margin-top: -7px;
+  line-height: 14px;
+}
+
+.product-picklist-item-body {
+  position: relative;
+  display: table;
+  width: 100%;
+  min-height: 60px;
+  padding: 6px 8px 6px 84px;
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 3px;
+
+  &.picklist-none { padding-left: 36px; }
+
+  // TODO - set up hover / active styles
+  &:hover {
+    z-index: 1;
+    //border-color: contrast($container-background-color, 6%);
+  }
+
+  [type="radio"]:checked ~ & {
+    z-index: 2;
+    //color: $secondary-color;
+    //border-color: $secondary-color;
+  }
+}
+
+.product-picklist-image-wrap {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 34px;
+  width: 40px;
+  overflow: hidden;
+}
+
+.product-picklist-image {
+  @include centerer;
+}
+
+.product-picklist-label-text {
+  display: table-cell;
+  padding: 15px 0;
+  line-height: 1.4;
+  vertical-align: middle;
+}

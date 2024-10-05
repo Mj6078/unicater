@@ -1,0 +1,64 @@
+// Breakpoints
+$breakpoint-xs: 480px;
+$breakpoint-s: 1000px;
+$breakpoint-m: 1024px;
+$breakpoint-l: 1440px;
+$breakpoint-xl: 1920px;
+
+// Grid
+$max-width: 1530px;
+$font-size: 15px;
+$gutter: 15px;
+$double-gutter: $gutter * 2;
+$border-radius: 4px;
+
+$susy: (
+  columns: 12,
+  gutters: 0.25,
+  debug: (
+    image: hide,
+    output: background,
+  )
+);
+
+// Easing
+$ease-out-quad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+$ease-out-back: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+
+// Transitions
+$transition-navbar: 0.2s linear;
+
+// Alert Colours
+$color-info: #00529B;
+$color-success: #8BC53F;
+$color-warning: #F3B603;
+$color-error: #FF5E5D;
+$color-alert-text: #fff;
+
+// Colors
+$color-topbar-sep: contrast(#000, 100%);
+
+// Fonts
+$roboto: 'Metropolis', sans-serif;;
+$roboto-slab: 'Metropolis', sans-serif;;
+
+// Measurements
+$topbar-height: rem-calc(56px);
+$navbar-height: rem-calc(100px);
+$compressed-navbar-height: rem-calc(56);
+$expanded-nav-height: $topbar-height + $navbar-height;
+$modal-width-narrow: rem-calc(684px);
+$section-padding: rem-calc(80px);
+$blog-index-width: rem-calc(645px);
+$mini-cart-width: 400px;
+
+// Z Indices
+$nav-mobile-z: 1000;
+
+// Core
+$account-light-color: $color-background;
+$account-accent-color: $color-body;
+$account-border-color: $color-border;
+$account-link-color: $color-accent;
+$account-gutter: $gutter;
+$account-font-size: $font-size;

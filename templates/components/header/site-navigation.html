@@ -1,0 +1,239 @@
+<nav class="navigation">
+  <div class="nav-container">
+    <div class="search-bar-container">
+      <form action="/search.php" data-quick-search-form data-url="{{urls.search}}">
+        <div class="search-bar">
+          <input name="search_query" type="text" placeholder="Search for products, categories, ..." data-search-quick required>
+          <button type="submit" class="search-button">
+            {{> svg/search}}
+          </button>
+        </div>
+      </form>
+    </div>
+    <ul class="nav-links">
+      {{#each categories}}
+      {{#unless name '===' 'Business'}}
+      {{#if children}}
+      <li class="dropdown mega-nav">
+        <a style="white-space: nowrap;" class="dropdown-toggle top-level-nav-link" href="#">
+          {{name}}
+        </a>
+        <div class="dropdown-panel mega-nav-panel">
+          <div class="container">
+            {{> components/common/main-navigation-categories}}
+          </div>
+        </div>
+      </li>
+      {{else}}
+      <li>
+        <a class="top-level-nav-link" href="{{url}}">{{name}}</a>
+      </li>
+      {{/if}}
+      {{/unless}}
+      {{/each}}
+      {{#each categories}}
+      {{#if name '===' 'Business'}}
+      <li class="dropdown mega-nav">
+        <a style="white-space: nowrap;" class="dropdown-toggle top-level-nav-link" href="#">
+          {{name}}
+        </a>
+        <div class="dropdown-panel mega-nav-panel">
+          <div class="container1">
+            <div class="category-grid">
+              {{#each children}}
+              <div class="category-box1">
+                <div class="outer-box1">
+                  <div class="image-link-container1">
+                    <img src='{{getImage image "thumbnail"}}' alt="{{name}}">
+                  </div>
+                  <a>{{name}}</a>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </li>
+      {{/if}}
+      {{/each}}
+    </ul>
+    <section class="quickSearchResults" data-bind="html: results"></section>
+  </div>
+</nav>
+
+<style>
+  .nav-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .search-bar {
+    width: 750px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    overflow: hidden;
+  }
+
+  @media only screen and (min-width: 1401px) and (max-width: 1530px) {
+    .search-bar {
+      width: 800px;
+    }
+  }
+
+  @media only screen and (min-width: 1230px) and (max-width: 1400px) {
+    .search-bar {
+      width: 700px;
+    }
+  }
+
+  @media only screen and (min-width: 1149px) and (max-width: 1230px) {
+    .search-bar {
+      width: 670px;
+    }
+  }
+
+  @media (max-width: 1149px) {
+    .search-bar {
+      width: 600px;
+    }
+  }
+
+  .search-bar input {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    border-radius: 25px 0 0 25px;
+    outline: none;
+    background-color: white;
+  }
+
+  .search-bar button {
+    padding: 10px 20px;
+    background-color: white;
+    border: none;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    color: black;
+  }
+
+  .search-bar button:hover .search-icon {
+    fill: purple;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
+  }
+
+  .nav-links li {
+    margin: 0 5px;
+  }
+
+  .container1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+  }
+
+  .category-box1 {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+
+  .category-box1:hover {
+    transform: scale(1.05);
+  }
+
+  .outer-box1 {
+    padding: 10px;
+  }
+
+  .image-link-container1 {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-link-container1 img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .category-box1 a {
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .category-box1 a:hover {
+    color: #4CAF50;
+  }
+
+  @media (max-width: 1024px) {
+    .category-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .category-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container1 {
+      padding: 10px;
+    }
+
+    .category-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .category-box1 {
+      padding: 5px;
+    }
+
+    .image-link-container1 {
+      height: 150px;
+    }
+
+    .image-link-container1 img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+</style>

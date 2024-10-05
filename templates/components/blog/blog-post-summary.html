@@ -1,0 +1,41 @@
+<article class="post">
+  {{#if thumbnail.data.length}}
+    <a href="{{url}}" class="ratio-4-3 post-image-link">
+      {{> components/common/responsive-image
+        image=thumbnail
+        class="blog-thumb"
+        fit="image-cover"
+        fallback_size=fallback_size
+        lazyload=lazyload
+        default_image=default_image
+      }}
+    </a>
+  {{/if}}
+  <h2 class="post-title">
+    <a href="{{url}}">
+      {{title}}
+    </a>
+  </h2>
+  {{> components/blog/blog-post-meta
+    author=author
+    date_published=date_published
+  }}
+  <div class="post-summary">
+    {{{summary}}}{{#if show_read_more}}&hellip;{{/if}}
+  </div>
+
+  <div class="post-summary-actions">
+    {{#if show_read_more}}
+      <a class="post-read-more" href="{{url}}">
+        {{ lang 'blog.read_more_text' }}
+      </a>
+    {{/if}}
+
+    {{> components/common/share-buttons
+      share_buttons=share_buttons
+      url=url
+      title=title
+      image=(getImage thumbnail 'thumb')
+    }}
+  </div>
+</article>

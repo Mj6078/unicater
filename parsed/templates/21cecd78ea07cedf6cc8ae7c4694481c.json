@@ -1,0 +1,3 @@
+{
+  "components/amp/styles/header": ".amp-mini-cart a svg {\n  fill: {{header_text}};\n}\n"
+}

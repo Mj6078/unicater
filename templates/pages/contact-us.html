@@ -1,0 +1,149 @@
+{{#partial "page"}}
+
+  <header style="background-color: #fff; margin-top: -50px;" class="search-header page-header">
+    {{> components/common/breadcrumbs breadcrumbs}}
+    <h1 class="search-title page-title">
+      {{page.title}}
+    </h1>
+  </header>
+
+      <style>
+  .contact-us1 {
+        max-width: 1440px;
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+    }
+    .contact-container1 {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .contact-options1 {
+        flex: 1;
+        padding: 20px;
+        margin-right: 20px;
+        background-color: #ffffff;
+    }
+    .contact-option1 {
+        margin-bottom: 20px;
+    }
+    .contact-option1 h2 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .contact-option1 p {
+        margin-bottom: 5px;
+        color: #666;
+    }
+    .contact-option1 a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    .whatsapp-button1 {
+        background: #25D366;
+        color: #fff;
+        padding: 10px;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+    .contact-image1 {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .contact-image1 img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+    #map {
+        height: 500px;  /* Set the height of the map */
+        width: 100%;    /* Set the width of the map */
+    }
+    .map-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+      </style>
+          <section class="contact-us1">
+              <div class="contact-container1">
+                  <div class="contact-options1">
+                      <div class="contact-option1">
+                          <h2>Chat to us</h2>
+                          <p>Our friendly team is here to help</p>
+                          <a href="mailto:hello@catering24.co.uk">info@unicater.co.uk</a><br>
+                          <a href="https://wa.me/441159444434" class="whatsapp-button1">C24 WhatsApp</a>
+                      </div>
+                      <div class="contact-option1">
+                          <h2>Call us</h2>
+                          <p>Mon - Fri from 10am to 6pm</p>
+                          <a href="tel:+4401135316345">+44 0113 531 6345</a>
+                      </div>
+                      <div class="contact-option1">
+                          <h2>Visit us</h2>
+                          <p>Come say hello at our office HQ</p>
+                          {{#if theme_settings.footer-show-address}}
+                              <div class="footer-col footer-info">
+                                  <h4 class="footer-title">{{lang 'footer.address'}}</h4>
+                                  <p>{{nl2br settings.address}}</p>
+                                  <p>{{settings.phone_number}}</p>
+                              </div>
+                          {{/if}}
+                      </div>
+                  </div>
+                  <div class="contact-image1">
+                      <img src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/contact-us.jpg?t=1720554581" alt="Contact Us Image">
+                  </div>
+              </div>
+          </section>
+          
+    <div style="width: 1440px; justify-content: center; display: inline ; align-items: center; margin-left : 5%; margin-right: 5%;">
+      {{#if forms.contact.success}}
+        {{> components/alerts/alert-success (lang 'contact.successful' shopPath=urls.home)}}
+      {{else}}
+    
+      {{/if}}
+
+      {{#unless forms.contact.success}}
+        <div class="form-contact-us">
+            <p style="text-align: center; font-weight: 700; font-size: large; ">Contact Form</p>
+          {{> core/forms/form-contact-us}}
+        </div>
+      {{/unless}}
+    </div>
+  </section>
+  <h1 style="text-align: center;">Our Location</h1>
+  <div class="map-container">
+
+    <iframe style="width: 1440px; text-align: center; align-items: center;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2356.031092499201!2d-1.5360137223366557!3d53.80673044017568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48795c11f62df7db%3A0xa5a436542e591872!2sBest%20Choice%20Wholesale!5e0!3m2!1sen!2suk!4v1720625232045!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+</div>
+  <script>
+      function initMap() {
+          // The location of the target
+          const location = { lat: 53.806685, lng: -1.537185 };
+          // The map, centered at the target location
+          const map = new google.maps.Map(document.getElementById("map"), {
+              zoom: 15,
+              center: location,
+          });
+          // The marker, positioned at the target location
+          const marker = new google.maps.Marker({
+              position: location,
+              map: map,
+              title: 'Unit 5 Sheepscar House, 15 Sheepscar Street South, Leeds, LS7 1AD, United Kingdom'
+          });
+      }
+  </script>
+  <!-- Load the Google Maps API script -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+<section class="product-listing section">
+{{/partial}}
+
+{{> layout/base}}

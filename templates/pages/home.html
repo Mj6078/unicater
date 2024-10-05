@@ -1,0 +1,1218 @@
+---
+carousel: true
+products:
+  new:
+    limit: {{theme_settings.home-new-products}}
+  featured:
+    limit: {{theme_settings.home-featured-products}}
+  top_sellers:
+    limit: {{theme_settings.home-top-selling-products}}
+brands: true
+blog:
+  recent_posts:
+    limit: 3
+    summary: {{theme_settings.home-blog-summary-length}}
+---
+
+{{#partial "page"}}
+<div data-aos="fade-up">
+<!-- Desktop Swiper -->
+<!-- Swiper HTML structure -->
+<div class="desktop-swiper-container">
+  <div class="swiper-wrapper">
+      <!-- First slide: image on the left, text on the right -->
+      <div class="swiper-slide">
+          <div class="desktop-carousel-content">
+              <div class="desktop-carousel-image left">
+                  <img src="https://www.innsupplies.com/cdn/shop/files/DSC00502b_2376x.jpg?v=1704987679" alt="Image of clamshell boxes">
+              </div>
+              <div class="desktop-carousel-text right">
+                  <h2>Bagasse Clamshell Boxes</h2>
+                  <p>Eco-friendly packaging for street food and takeaways.</p>
+                  <a href="#" class="desktop-shop-btn">Shop Now</a>
+              </div>
+          </div>
+      </div>
+      <!-- Second slide: text on the left, image on the right -->
+      <div class="swiper-slide">
+          <div class="desktop-carousel-content">
+              <div class="desktop-carousel-text left">
+                  <h2>Eco-friendly Cutlery</h2>
+                  <p>Biodegradable cutlery for sustainable dining.</p>
+                  <a href="#" class="desktop-shop-btn">Shop Now</a>
+              </div>
+              <div class="desktop-carousel-image right">
+                  <img src="https://www.innsupplies.com/cdn/shop/files/DSC00502b_2376x.jpg?v=1704987679" alt="Image of cutlery">
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Swiper Pagination and Navigation -->
+  <div class="swiper-pagination desktop-swiper-pagination"></div>
+  <div class="swiper-button-next desktop-swiper-button-next"></div>
+  <div class="swiper-button-prev desktop-swiper-button-prev"></div>
+</div>
+
+<!-- Mobile Swiper -->
+<div class="mobile-swiper-container-unique" style="width: 100%;">
+  <div class="mobile-info-bar-unique swiper-container-unique">
+    <div class="swiper-wrapper-unique">
+      <div class="swiper-slide-unique">
+        <img style="width: 100%;" src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/desktop-new-banner-size-1-2000x646-crop-center.jpg?t=1726603276" alt="Mobile Image 1">
+      </div>
+      <!-- Add more slides for mobile -->
+    </div>
+    <div class="swiper-button-next-unique">></div>
+    <div class="swiper-button-prev-unique"><</div>
+  </div>
+</div>
+
+<!--   {{#if carousel.slides.length}}
+    {{> components/carousel}}
+    {{{region name="home_below_carousel"}}}
+
+  {{/if}} -->
+  <div class="roll1">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+    <div class="info-bar-mobile swiper-container">
+      <div class="fade-left"></div>
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="info-block1">
+              <!-- Directly insert an icon for testing -->
+              {{> svg/leave}}
+              <span style="font-size: 15px; font-weight: 800;" class="content opening-time">Carbon Conscious</span>
+              <span class="content opening-note">Carbon Neutrality</span> <!-- Second span added here -->
+          </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="info-block1">
+            <!-- Directly insert an icon for testing -->
+            {{> svg/traking}}
+            <span style="font-size: 15px; font-weight: 800;" class="content opening-time">Parcel Traking</span>
+            <span class="content opening-note">Real Time Traking</span> <!-- Second span added here -->
+        </div>
+    </div>
+    <div class="swiper-slide">
+      <div class="info-block1">
+          <!-- Directly insert an icon for testing -->
+          {{> svg/box}}
+          <span style="font-size: 15px; font-weight: 800;" class="content opening-time">Free Delivery</span>
+          <span class="content opening-note">Order £100 & More</span> <!-- Second span added here -->
+      </div>
+  </div>
+<div class="swiper-slide">
+    <div class="info-block1">
+        <div style="margin-top: -5px;">
+        {{> svg/truck}}
+      </div>
+        <div style="margin-top: -15px;">
+        <span style="font-size: 15px; font-weight: 800;" class="content opening-time">Next Day Delivery</span>
+        <span class="content opening-note">Mon-Sat / 6 Days a Week</span> <!-- Second span added here -->
+    
+      </div>
+     </div>
+</div>
+            
+      </div>
+      <div class="fade-right"></div>
+    </div>
+    <div style="background-color: #e0e4d1;">
+      <div style="margin-right: 100px;">
+    <div class="info-bar-pc">
+      <div style="margin-left: 10px;">
+      <div class="info-block">
+    
+        {{> svg/leave}}
+        <div class="content-wrapper">
+          <span style="font-size: 15px; color: rgb(0, 0, 0); margin-left: 10px; font-weight: 700;">PC Opening Time:</span>
+          <span style="font-size: 15px; color: rgb(0, 0, 0); margin-left: 10px; ">10:00am to 6:30pm</span>
+        </div>
+      </div>
+      </div>
+      <div class="info-block">
+        {{> svg/traking}}
+        <div class="content-wrapper">
+          <span style="font-size: 15px; color: rgb(0, 0, 0); margin-left: 10px; font-weight: 700;">PC Opening Time:</span>
+          <span style="font-size: 15px; color: rgb(0, 0, 0); margin-left: 10px; ">10:00am to 6:30pm</span>
+        </div>
+      </div>
+      <div class="info-block">
+        {{> svg/box}}
+        <div class="content-wrapper">
+          <span style="font-size: 15px; color: rgb(0, 0, 0); margin-left: 10px; font-weight: 700;">PC Opening Time:</span>
+          <span style="font-size: 15px; color: rgb(0, 0, 0); margin-left: 10px; ">10:00am to 6:30pm</span>
+        </div>
+      </div>
+      <div class="info-block">
+        {{> svg/truck}}
+        <div class="content-wrapper">
+          <span style="font-size: 15px; color: rgb(0, 0, 0); margin-left: 10px; font-weight: 700;">PC Opening Time:</span>
+          <span style="font-size: 15px; color: rgb(0, 0, 0); margin-left: 10px; ">10:00am to 6:30pm</span>
+        </div>
+      </div>
+      
+    </div>
+    </div>
+    </div>
+    </div>
+    <link href="https://fonts.googleapis.com/css2?family=Precious&display=swap" rel="stylesheet">
+
+  {{{snippet 'home_content'}}}
+<!--   <div style="background-image: url('https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/untitled-design-2024-09-26t173241.825.png?t=1727368385'); 
+  background-size: contain; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  width: 100%; 
+  height: 100%;
+  background-size: cover;"> -->
+  <div class="body1">
+    <div class="background1"></div>
+    <div style="margin-top: 50px;" class="content1">
+        <!-- Cards Container -->
+        <div class="card-container1">
+            <!-- Cards -->
+            <div class="card1">
+                <div class="card-item1">
+                    <img src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/takeaway-food-boxes-720x.jpg?t=1727884928" alt="Takeaway Food Boxes">
+                    <p>Takeaway Food Boxes</p>
+                </div>
+                <div class="card-item1">
+                    <img src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/wooden-cutlery-720x.jpg?t=1727884929" alt="Cutlery">
+                    <p>Cutlery</p>
+                </div>
+                <div class="card-item1">
+                    <img src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/pint-half-pint-glasses-collection-thumbnail-506x506px-720x.jpg?t=1727884948" alt="Paper Coffee Cups">
+                    <p>Paper Coffee Cups</p>
+                </div>
+                <div class="card-item1">
+                    <img src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/paper-coffee-cups-720x.jpg?t=1727884949" alt="Pint & Half Pint Glasses">
+                    <p>Pint & Half Pint Glasses</p>
+                </div>
+                <div class="card-item1">
+                    <img src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/napkins-collection-thumbnail-720x.jpg?t=1727884950" alt="Champagne Flutes">
+                    <p>Champagne Flutes</p>
+                </div>
+                <div class="card-item1">
+                  <img src="https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/champagne-flutes-720x.jpg?t=1727884951" alt="Champagne Flutes">
+                  <p>Champagne Flutes</p>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  {{#if products.featured}}
+  {{#unless products.top_sellers}}
+    <section
+      data-list-name="{{lang 'data_tags.featured'}}"
+    >
+      <div style="margin-top: 50px;" class="container">
+        <h3 class="section-title">{{lang 'home.featured_products'}}</h3>
+        <div class="product-carousel">
+          {{#each products.featured}}
+            {{> components/products/product-grid-item2
+              this
+              show_rating=../settings.show_product_rating
+              image_ratio=../theme_settings.product_grid_image_ratio
+              fit=../theme_settings.product_grid_image_cropping
+              lazyload=../theme_settings.lazyload_mode
+              fallback_size=../theme_settings.thumb
+              default_image=../theme_settings.default_image
+              quick_shop=../theme_settings.quick-shop
+              show_sale_badges=../theme_settings.sale-badges
+              price_range_display=../theme_settings.price_range_display
+              retail_price_label=../theme_settings.retail-price-label
+              non_sale_price_label=../theme_settings.non-sale-price-label
+              sale_price_label=../theme_settings.sale-price-label
+              price_label=../theme_settings.price-label
+              event="list"
+              position=(add @index 1)
+            }}
+          {{/each}}
+        </div>
+      </div>
+    </section>
+  {{/unless}}
+{{/if}}
+<div style="background-image: url('https://cdn11.bigcommerce.com/s-6yvytzf4lr/images/stencil/original/image-manager/watercolor-abstract-doodle-background-23-2149344994-removebg-preview.png?t=1719513035'); background-repeat: no-repeat; background-size: cover;">
+  
+  {{#if products.new}}
+    <section
+      class="products-featured section"
+      data-list-name="{{lang 'data_tags.new'}}"
+    >
+    <div class="container">
+      <h3 class="section-title">{{lang 'home.new_products'}}</h3>
+      <div class="product-grid product-carousel">
+        {{#each products.new}}
+          {{> components/products/product-grid-item2
+            this
+            show_rating=../settings.show_product_rating
+            image_ratio=../theme_settings.product_grid_image_ratio
+            fit=../theme_settings.product_grid_image_cropping
+            lazyload=../theme_settings.lazyload_mode
+            fallback_size=../theme_settings.thumb
+            default_image=../theme_settings.default_image
+            quick_shop=../theme_settings.quick-shop
+            show_sale_badges=../theme_settings.sale-badges
+            price_range_display=../theme_settings.price_range_display
+            retail_price_label=../theme_settings.retail-price-label
+            non_sale_price_label=../theme_settings.non-sale-price-label
+            sale_price_label=../theme_settings.sale-price-label
+            price_label=../theme_settings.price-label
+            event="list"
+            position=(add @index 1)
+          }}
+        {{/each}}
+        </div>
+      </div>
+    </section>
+
+    {{{region name="home_below_new_products"}}}
+  {{/if}}
+
+  {{! Show tabs if both exist, else show single carousel grid}}
+  {{#if products.featured}}
+    {{#if products.top_sellers}}
+      <section class="products-featured section">
+        <div class="container">
+          <ul class="tabs" data-tabs role="tablist">
+            <li class="tab-title"><a href="#featured-products">{{lang 'home.featured_products'}}</a></li>
+            <li class="tab-title"><a href="#best-sellers">{{lang 'home.best_sellers'}}</a></li>
+          </ul>
+          <div class="tabs-content">
+            <div
+              class="tab-content-panel"
+              id="featured-products"
+              data-tab-content
+              data-list-name="{{lang 'data_tags.featured'}}"
+            >
+              <div class="product-grid product-carousel">
+                {{#each products.featured}}
+                  {{> components/products/product-grid-item2
+                    this
+                    show_rating=../settings.show_product_rating
+                    image_ratio=../theme_settings.product_grid_image_ratio
+                    fit=../theme_settings.product_grid_image_cropping
+                    lazyload=../theme_settings.lazyload_mode
+                    fallback_size=../theme_settings.thumb
+                    default_image=../theme_settings.default_image
+                    quick_shop=../theme_settings.quick-shop
+                    show_sale_badges=../theme_settings.sale-badges
+                    price_range_display=../theme_settings.price_range_display
+                    retail_price_label=../theme_settings.retail-price-label
+                    non_sale_price_label=../theme_settings.non-sale-price-label
+                    sale_price_label=../theme_settings.sale-price-label
+                    price_label=../theme_settings.price-label
+                    event="list"
+                    position=(add @index 1)
+                  }}
+                {{/each}}
+              </div>
+            </div>
+            <div
+              class="tab-content-panel"
+              id="best-sellers"
+              data-tab-content
+              data-list-name="{{lang 'data_tags.popular'}}"
+            >
+              <div class="product-grid product-carousel">
+                {{#each products.top_sellers}}
+                  {{> components/products/product-grid-item2
+                    this
+                    show_rating=../settings.show_product_rating
+                    image_ratio=../theme_settings.product_grid_image_ratio
+                    fit=../theme_settings.product_grid_image_cropping
+                    lazyload=../theme_settings.lazyload_mode
+                    fallback_size=../theme_settings.thumb
+                    default_image=../theme_settings.default_image
+                    quick_shop=../theme_settings.quick-shop
+                    show_sale_badges=../theme_settings.sale-badges
+                    price_range_display=../theme_settings.price_range_display
+                    retail_price_label=../theme_settings.retail-price-label
+                    non_sale_price_label=../theme_settings.non-sale-price-label
+                    sale_price_label=../theme_settings.sale-price-label
+                    price_label=../theme_settings.price-label
+                    event="list"
+                    position=(add @index 1)
+                  }}
+                {{/each}}
+              </div>
+            </div>
+            <svg class="icon icon-spinner"><use xlink:href="#icon-spinner" /></svg>
+          </div>
+        </div>
+      </section>
+      {{{region name="home_below_featured_products"}}}
+    {{/if}}
+  {{/if}}
+  {{#if products.top_sellers}}
+    {{#unless products.featured}}
+      <section
+        class="products-featured section"
+        data-list-name="{{lang 'data_tags.popular'}}"
+      >
+        <div class="container">
+          <h3 class="section-title">{{lang 'home.best_sellers'}}</h3>
+          <div class="product-grid product-carousel">
+            {{#each products.top_sellers}}
+              {{> components/products/product-grid-item2
+                this
+                show_rating=../settings.show_product_rating
+                image_ratio=../theme_settings.product_grid_image_ratio
+                fit=../theme_settings.product_grid_image_cropping
+                lazyload=../theme_settings.lazyload_mode
+                fallback_size=../theme_settings.thumb
+                default_image=../theme_settings.default_image
+                quick_shop=../theme_settings.quick-shop
+                show_sale_badges=../theme_settings.sale-badges
+                price_range_display=../theme_settings.price_range_display
+                retail_price_label=../theme_settings.retail-price-label
+                non_sale_price_label=../theme_settings.non-sale-price-label
+                sale_price_label=../theme_settings.sale-price-label
+                price_label=../theme_settings.price-label
+                event="list"
+                position=(add @index 1)
+              }}
+            {{/each}}
+          </div>
+        </div>
+      </section>
+      {{{region name="home_below_top_products"}}}
+    {{/unless}}
+  {{/if}}
+
+  {{#if theme_settings.home-show-brands}}
+    <section class="brand-list section">
+      <div class="container">
+        {{#each (limit brands 8)}}
+          {{#if this.image.data}}
+            <a class="brand-link" href="{{this.url}}">
+              <img class="brand-logo" src="{{getImage image 'thumb'}}" alt="{{this.image.alt}}" />
+            </a>
+          {{/if}}
+        {{/each}}
+      </div>
+    </section>
+  {{/if}}
+</div>
+<div id="faq-section">
+  <div class="faq-header">
+    <h1>Frequently Asked Questions</h1>
+  </div>
+  <div class="faq-content">
+    <div class="faq-item">
+      <input type="checkbox" id="faq1">
+      <label for="faq1" class="faq-question">
+        What are the delivery options for food packaging?
+        <span class="faq-icon"></span>
+      </label>
+      <div class="faq-answer">
+        <p>We offer free next-working-day delivery when you spend £100. You’ll be able to track your parcel via DPD and you’ll receive a one-hour delivery slot so you never miss a shipment. For branded packaging orders, we pride ourselves on our quick turnaround time. You’ll be able to get printed paper cups, custom stickers and printed greaseproof paper in just 10 working days from receipt of your order. We’ll work closely with you for bespoke orders to find a suitable time frame to deliver your project.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="faq2">
+      <label for="faq2" class="faq-question">
+        Is paper-based packaging better than plastic packaging?
+        <span class="faq-icon"></span>
+      </label>
+      <div class="faq-answer">
+        <p>Plastic packaging has some undeniable benefits, but a huge number of environmental drawbacks vastly outweighs them. Most plastic takeaway containers can’t be recycled or reused safely, so we favour paper, cardboard and plant-based packaging. You’ll find an array of food and drinks packaging in our online shop that offer identical or improved performance over their plastic counterparts, from our recyclable greaseproof paper to our bagasse clamshell containers.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="faq3">
+      <label for="faq3" class="faq-question">
+        Hvad er leveringstiden?
+        <span class="faq-icon"></span>
+      </label>
+      <div class="faq-answer">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{/partial}}
+
+{{> layout/base}}
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/metropolis" type="text/css"/>
+<style>
+
+/* FAQ Section */
+#faq-section {
+  width: 100%;
+  max-width: 1000px;
+  margin: 40px auto; /* Center horizontally */
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center; /* Align content in the center */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+/* FAQ Header */
+.faq-header h1 {
+  font-size: 42px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 25px;
+}
+.faq-item {
+  margin-bottom: 15px; /* Add space between items */
+  text-align: left; /* Align questions and answers to the left */
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+/* FAQ Checkbox */
+.faq-item input[type="checkbox"] {
+  display: none;
+}
+
+/* FAQ Question */
+.faq-question {
+  font-size: 25px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: #000000;
+  transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+  color: #0056b3;
+}
+
+.faq-icon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-left: 2px solid #007bff;
+  border-bottom: 2px solid #007bff;
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease;
+}
+
+input[type="checkbox"]:checked + .faq-question .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* FAQ Answer */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 0;
+  font-size: 15px;
+}
+
+input[type="checkbox"]:checked ~ .faq-answer {
+  max-height: 150px;
+  padding: 15px 0;
+}
+
+.faq-answer p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #6c757d;
+}
+
+.info-bar-pc {
+    background-color: #e0e4d1;
+    padding: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    justify-content: space-between; /* Changed property */
+    align-items: center;
+    height: 100px;
+    max-width: 1150px;
+    margin: 0 auto;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.info-block img {
+    margin-right: 10px; /* Add some space between logo and text */
+}
+.info-block {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Adjust the container */
+.info-bar-mobile {
+    background-color: #e0e4d1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #050505;
+    overflow: hidden;
+    height: 120px; /* Adjust height to accommodate icon + text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    position: relative;
+    overflow: visible; /* Ensure part of the next and previous slides are visible */
+}
+
+/* Ensure the swiper-container is positioned relative */
+.swiper-container {
+  position: relative;
+  width: 100%;
+  max-width: 1230px;
+  padding: 20px 0;
+  overflow: visible;
+}
+.swiper-slide {
+    flex-shrink: 0;
+    width: auto;  /* Let slides have flexible width */
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    height: 100%;
+}
+
+/* Add a larger left margin to the first slide */
+.swiper-slide:first-child {
+    margin-left: 20px;  /* Larger margin to the left for better balance */
+}
+
+/* Reduce the space between slides */
+.swiper-slide {
+    margin-left: 0px;  /* Standard small space between slides */
+}
+/* Active slide gets full opacity */
+.swiper-slide-active {
+    opacity: 1;
+}
+
+/* Ensure Swiper wrapper transitions correctly */
+.swiper-wrapper {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+/* Fade effect for left and right edges */
+.fade-left, .fade-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px; /* Adjust this value as needed */
+  pointer-events: none; /* Prevent interaction with these elements */
+  z-index: 10; /* Ensure they sit above the slides */
+}
+
+.fade-left {
+  left: 0;
+  background: linear-gradient(to right, rgba(245, 243, 237, 0.9), rgba(245, 243, 237, 0));
+}
+
+.fade-right {
+  right: 0;
+  background: linear-gradient(to left, rgba(245, 243, 237, 0.9), rgba(245, 243, 237, 0));
+}
+
+
+
+/* Ensure proper width and spacing between sections */
+.info-block1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-width: 150px;  /* Set a minimum width for each section */
+    max-width: 150px;  /* Prevent sections from expanding too much */
+    margin-right: 15px;  /* Space between items */
+}
+
+.content {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin: 3px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 0; 
+}
+
+/* Fix any image or media within the section */
+.info-block1 img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .swiper-slide {
+    width: calc(100% / 2 - 10px);  /* Adjust the width for 2 slides with margin */
+  }
+}
+
+/* Media Queries */
+@media screen and (max-width: 1000px) {
+    .info-bar-pc {
+        display: none; /* Hide the PC bar on smaller screens */
+    }
+
+    .info-bar-mobile {
+        display: flex; /* Display the mobile bar on smaller screens */
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .info-bar-mobile {
+        display: none; /* Hide the mobile bar on larger screens */
+    }
+
+    .info-bar-pc {
+        display: flex; /* Display the PC bar on larger screens */
+    }
+}
+
+
+.body1 {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+.background1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.content1 {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    text-align: center;
+}
+.card-container1 {
+    padding: 0;
+    border-radius: 10px;
+}
+.card1 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 1500px;
+}
+.card-item1 {
+    margin: 10px;
+    background-color: transparent;
+    width: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card-item1 p {
+    color: black;
+    font-size: 18px;
+    margin: 0;
+}
+.card-item1 img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10%;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px; /* Add space between the image and the text */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for smoother effect */
+}
+
+/* Hover effect */
+.card-item1:hover img {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Slightly enhance the shadow on hover */
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 1000px) {
+    .card-item1 {
+        width: calc(33.33% - 20px);
+    }
+    .card-item1 img {
+        width: 100px;
+        height: 100px;
+    }
+    .card-item1 p {
+        font-size: 14px;
+    }
+}
+body, html {
+  overflow-x: hidden;
+}
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Enforce the full width on the main Swiper container */
+.mobile-swiper-container-unique {
+  position: relative; /* Ensure it's positioned correctly */
+  width: 100%; /* Viewport width to ensure it takes up the full screen */
+  max-width: 100%; /* Prevent it from being smaller */
+  margin: 0; /* Remove any default margins */
+  padding: 0; /* Remove any default padding */
+  left: 0; /* Align to the left */
+  right: 0; /* Align to the right */
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Ensure that the inner Swiper container takes up full width */
+/* Set fixed height for swiper container */
+.desktop-swiper-container {
+    width: 100%;
+    height: 600px; /* Fixed height for the entire container */
+    position: relative;
+    overflow: hidden;
+    margin-top: -50px;
+}
+
+/* Swiper slides */
+.swiper-slide {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ensure each slide takes full width */
+    height: 100%; /* Make sure slides take up the full container height */
+}
+
+.desktop-carousel-content {
+    display: flex;
+    width: 100%;
+    height: 100%; /* Make content take full height of the container */
+    flex-direction: row;
+}
+
+/* Set a max-height for the image to fit within the container */
+.desktop-carousel-image {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.desktop-carousel-image img {
+    width: 100%;
+    height: auto;
+    max-height: 100%; /* Ensure the image fits within the container */
+    border-radius: 10px;
+}
+
+.desktop-carousel-text {
+    width: 30%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Horizontally center text */
+    height: 100%;
+    text-align: center; /* Center align the text inside */
+    background-color: rgba(255, 255, 255, 0.8); /* Add subtle background with transparency */
+    border-radius: 10px; /* Rounded corners for a softer look */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.desktop-carousel-text h2 {
+    font-size: 2.2rem;
+    color: #333333;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center; /* Center heading text */
+}
+
+.desktop-carousel-text p {
+    font-size: 1.1rem;
+    color: #555555;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    text-align: center; /* Center paragraph text */
+}
+
+/* Updated Button Style */
+.desktop-shop-btn {
+    padding: 12px 25px;
+    background-color: #007BFF; /* Fresh, modern blue tone */
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600; /* Slightly thicker for emphasis */
+    border-radius: 5px;
+    width: 100px; /* Button width */
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 123, 255, 0.2); /* Subtle shadow to add dimension */
+}
+
+.desktop-shop-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Lift button slightly on hover */
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3); /* Stronger shadow on hover */
+}
+
+/* Specific positioning for alternating layout */
+.desktop-carousel-image.left {
+    order: 1;
+}
+
+.desktop-carousel-text.right {
+    order: 2;
+}
+
+.desktop-carousel-text.left {
+    order: 1;
+}
+
+.desktop-carousel-image.right {
+    order: 2;
+}
+
+/* Swiper Pagination */
+.desktop-swiper-pagination {
+    bottom: 20px;
+}
+
+/* Navigation buttons */
+.desktop-swiper-button-next,
+.desktop-swiper-button-prev {
+    color: #007BFF; /* Match the button color */
+    border: 2px solid #007BFF; /* Outline for modern look */
+    background-color: rgba(255, 255, 255, 0.8); /* Subtle transparency */
+    width: 30px; /* Smaller size */
+    height: 30px;
+    border-radius: 50%; /* Rounded shape */
+    position: absolute;
+    bottom: 20px; /* Position at bottom */
+    right: 40px; /* Distance from the right side */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.desktop-swiper-button-prev {
+    right: 80px; /* Slightly to the left of the next button */
+}
+
+.desktop-swiper-button-next:hover,
+.desktop-swiper-button-prev:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    color: #fff; /* Invert text color */
+    transform: translateY(-3px); /* Slight lift on hover */
+}
+
+/* Swiper buttons icon smaller */
+.desktop-swiper-button-next::after,
+.desktop-swiper-button-prev::after {
+    font-size: 14px; /* Smaller arrow icons */
+}
+
+@media (max-width: 1250px) {
+    .desktop-carousel-content {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch; /* Ensure both image and text stretch equally */
+    }
+
+    .desktop-carousel-image,
+    .desktop-carousel-text {
+        flex: 1; /* Both will take equal width */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .desktop-carousel-image img {
+        max-height: 100%; /* Ensure the image stays within the container */
+        height: 100%; /* Force image to take full height of the container */
+        object-fit: cover; /* Ensures the image doesn't distort */
+    }
+
+    .desktop-carousel-text {
+        padding: 20px;
+        box-sizing: border-box;
+        flex: 1; /* Take up the same space as the image */
+        height: 100%; /* Make sure text container stretches to the full height */
+    }
+
+    .swiper-slide {
+        height: auto; /* Allow the slide to be auto-height based on content */
+    }
+}
+.mobile-info-bar-unique {
+  width: 100%; /* Full width */
+  height: auto;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Hide overflow */
+  position: relative;
+}
+.swiper-wrapper-unique {
+  width: 100%; /* Full width */
+  height: 100%; /* Let it take the container height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ensure the Swiper slide images also fill the container */
+.swiper-slide-unique {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ensure it fills the width */
+  height: 100%; /* Adjust to container height */
+}
+/* Additional styles for navigation arrows to stay within bounds */
+.swiper-button-next-unique,
+.swiper-button-prev-unique {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@import url('https://fonts.cdnfonts.com/css/metropolis');
+
+                
+.swiper-slide-unique {
+  display: flex; /* Ensure the image inside centers correctly */
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Full width */
+}
+
+.swiper-button-next-unique {
+  right: 10px; /* Adjust position if necessary */
+}
+
+.swiper-button-prev-unique {
+  left: 10px; /* Adjust position if necessary */
+}
+.swiper-slide-unique img {
+  width: 100%; /* Make image take up the full width of the slide */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 100%; /* Prevent it from becoming too large */
+  object-fit: cover; /* Fill the container without stretching */
+  display: block;
+}
+
+/* Ensure full width of Swiper even in parent containers */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'MetropolisRegular'; /* Prevent horizontal scrolling */
+}
+
+@media (max-width: 1000px) {
+  .desktop-swiper-container{
+    display: none;
+  }
+  .mobile-swiper-container-unique {
+    display: block;
+  }
+}
+
+@media (min-width: 1001px) {
+  .mobile-swiper-container-unique {
+    display: none;
+  }
+  .desktop-swiper-container{
+    display: block;
+  }
+
+}
+@font-face {
+    font-family: 'Metropolis';
+    src: url('/assets/fonts/Metropolis-Regular.woff2') format('woff2'),
+         url('/assets/fonts/Metropolis-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body {
+    font-family: 'Metropolis';
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Metropolis:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+var swiper = new Swiper('.swiper-container', {
+  slidesPerView: 'auto',
+  spaceBetween: 10,
+  loop: true,
+  centeredSlides: true, // Ensure the active slide is centered
+  autoplay: {
+    delay: 4000,
+    disableOnInteraction: false,
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 2, // Show the central slide with a partial view of the next slide for small screens
+      centeredSlides: true,
+      spaceBetween: 10,
+    },
+    600: {
+      slidesPerView: 3, // Slightly more of the left and right slides are visible for medium screens
+      centeredSlides: true,
+      spaceBetween: 15,
+    },
+    1000: {
+      slidesPerView: 2, // Adjust accordingly to make two slides visible with the center-focused effect
+      centeredSlides: true,
+      spaceBetween: 20,
+    }
+  }
+});
+
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+AOS.init({
+  duration: 500,
+  easing: 'ease-in-out',
+  once: true,
+  offset: 0,  // You can adjust this value based on your design
+});
+  </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var swiperUnique = new Swiper('.swiper-container-unique', {
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination-unique', // Unique pagination class
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next-unique', // Unique next button class
+      prevEl: '.swiper-button-prev-unique', // Unique prev button class
+    },
+  });
+});
+</script>
+<style>
+
+  .button.button-primary.button-wide.add-to-cart {
+      background-color: #ff5722; 
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+  }
+  
+  .button.button-primary.button-wide.add-to-cart:hover {
+      background-color: #e64a19; 
+      cursor: pointer;
+  }
+  
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const desktopSwiper = new Swiper('.desktop-swiper-container', {
+            loop: true, // Infinite scrolling
+            autoplay: {
+                delay: 4000, // 4-second delay between slides
+            },
+            effect: 'slide', // Horizontal sliding
+            direction: 'horizontal', // Ensure horizontal sliding
+            navigation: {
+                nextEl: '.desktop-swiper-button-next',
+                prevEl: '.desktop-swiper-button-prev',
+            },
+            pagination: {
+                el: '.desktop-swiper-pagination',
+                clickable: true,
+            },
+            on: {
+                slideChangeTransitionStart: function () {
+                    const currentSlide = desktopSwiper.slides[desktopSwiper.previousIndex];
+                    const nextSlide = desktopSwiper.slides[desktopSwiper.activeIndex];
+    
+                    const currentImage = currentSlide.querySelector('.desktop-carousel-image');
+                    const currentText = currentSlide.querySelector('.desktop-carousel-text');
+                    currentImage.style.opacity = '0';
+                    currentImage.style.transform = 'translateX(-50%)';
+                    currentText.style.opacity = '0';
+                    currentText.style.transform = 'translateY(-20%)';
+    
+                    const nextImage = nextSlide.querySelector('.desktop-carousel-image');
+                    const nextText = nextSlide.querySelector('.desktop-carousel-text');
+                    nextImage.style.opacity = '0';
+                    nextText.style.opacity = '0';
+    
+                    setTimeout(() => {
+                        nextImage.style.transition = 'opacity 0.8s ease-in-out, transform 0.8s ease-in-out';
+                        nextImage.style.opacity = '1';
+                        nextImage.style.transform = 'translateX(0)';
+                        nextText.style.transition = 'opacity 0.8s ease-in-out, transform 0.8s ease-in-out';
+                        nextText.style.opacity = '1';
+                        nextText.style.transform = 'translateY(0)';
+                    }, 300);
+                },
+            },
+        });
+    });
+    </script>

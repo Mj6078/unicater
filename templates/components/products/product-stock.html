@@ -1,0 +1,15 @@
+<div class="product-stock">
+	<span
+		class="{{#unless product.stock_level}}product-details-hidden{{/unless}}"
+		data-product-stock
+	>
+		{{lang 'product.current_stock'}}
+	</span>
+	<span
+		class="{{#unless product.stock_level}}product-details-hidden{{/unless}}"
+		data-product-stock
+		data-product-stock-level
+	>
+		{{product.stock_level}}
+	</span>
+</div>
