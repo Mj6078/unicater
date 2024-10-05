@@ -22,7 +22,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: rgb(0, 0, 0) !important;
+  background-color: rgb(246,248,251) !important;
   opacity: 0;
   transition: opacity 0.5s ease;
 
@@ -46,8 +46,7 @@
       width: auto;
       height: auto;
       max-width: 100%;
-      max-height: 100%;
-      background-color: rgb(0, 0, 0) !important;
+      max-height: 90%;
       vertical-align: middle;
     }
 
@@ -103,46 +102,50 @@
   100% { margin-left: 0; }
 }
 
-.baguetteBox-button {
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  font-size: 1.6em;
-  cursor: pointer;
-  background-color: transparent;
-  border: 0;
-  border-radius: 15%;
-  outline: none;
-  transition: background-color 0.4s ease;
-
-  &#next-button {
-    @extend %arrow-button;
-    right: 2%;
-  }
-
-  &#previous-button {
-    @extend %arrow-button;
-    left: 2%;
-  }
-
-  &#close-button {
-    top: 20px;
-    right: 20px;
-    width: 30px;
-    height: 30px;
-  }
-
-  // Firefox fix
-  svg {
+#baguetteBox-overlay {
+  .baguetteBox-button {
     position: absolute;
-    top: 0;
-    left: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    outline: none;
+    transition: background-color 0.4s ease;
 
-    g {
-      stroke: BLACK;
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      g,
+      polyline {
+        stroke: black !important;  /* Ensure black stroke for arrows */
+      }
+    }
+
+    &#next-button {
+      top: calc(50% - 30px);
+      right: 2%;
+      display: block; /* Ensure visibility */
+    }
+
+    &#previous-button {
+      top: calc(50% - 30px);
+      left: 2%;
+      display: block; /* Ensure visibility */
+    }
+
+    &#close-button {
+      top: 20px;
+      right: 20px;
+      width: 30px;
+      height: 30px;
+      display: block; /* Ensure visibility */
     }
   }
 }
+
 
 // http://tobiasahlin.com/spinkit/
 .spinner:not(.button) {
